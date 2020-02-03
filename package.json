@@ -6,7 +6,10 @@
   "license": "MIT",
   "main": "server.js",
   "scripts": {
-    "dev": "docker-compose up"
+    "client:install": "npm install --prefix client",
+    "client:build": "npm run build --prefix client",
+    "server:start": "docker-compose up --build",
+    "production": "cross-env NODE_ENV=production nodemon server.js"
   },
   "dependencies": {
     "@hapi/hapi": "^19.0.5",
@@ -16,6 +19,7 @@
     "mongoose": "^5.4.10"
   },
   "devDependencies": {
+    "cross-env": "^7.0.0",
     "nodemon": "^1.18.10"
   }
 }

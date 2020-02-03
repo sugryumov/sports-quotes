@@ -1,12 +1,13 @@
 const os = require('os');
+const Path = require('path');
 const Hapi = require('@hapi/hapi');
 const Inert = require('@hapi/inert');
 const Vision = require('@hapi/vision');
 const HapiSwagger = require('hapi-swagger');
 const swaggerOptions = require('./config/swagger');
 const db = require('./config/db');
-const viewsRoutes = require('./app/routes/views');
 const quoteRoutes = require('./app/routes/quote');
+const viewsRoutes = require('./app/routes/views');
 
 const init = async () => {
   const ifaces = os.networkInterfaces();
@@ -14,7 +15,15 @@ const init = async () => {
   const port = 8080;
 
   const server = Hapi.server({
-    port: port
+    port: port,
+    routes: {
+      files: {
+        relativeTo: Path.join(__dirname, 'client')
+      },
+      cors: {
+        credentials: true
+      }
+    }
   });
 
   await server.register([
@@ -26,10 +35,15 @@ const init = async () => {
     }
   ]);
 
-  server.route([...viewsRoutes, ...quoteRoutes]);
+  await server.route([...quoteRoutes]);
+
+  if (process.env.NODE_ENV === 'production') {
+    server.route([...viewsRoutes]);
+  }
 
   await server.start();
   console.log(`Server running on http://${ip}:${port}`);
+  console.log(`Swagger documentation: http://${ip}:${port}/documentation`);
 };
 
 init();

@@ -3,7 +3,7 @@ const quoteControllers = require('../controllers/quote');
 const quoteRoutes = [
   {
     method: 'POST',
-    path: '/create-quote',
+    path: '/api/v1/create-quote',
     config: {
       tags: ['api']
     },
@@ -11,7 +11,7 @@ const quoteRoutes = [
   },
   {
     method: 'GET',
-    path: '/quotes',
+    path: '/api/v1/quotes',
     config: {
       tags: ['api']
     },
@@ -19,7 +19,7 @@ const quoteRoutes = [
   },
   {
     method: 'GET',
-    path: '/quotes/{quoteId}',
+    path: '/api/v1/quotes/{quoteId}',
     config: {
       tags: ['api']
     },
@@ -27,7 +27,7 @@ const quoteRoutes = [
   },
   {
     method: 'DELETE',
-    path: '/quotes/{quoteId}',
+    path: '/api/v1/quotes/{quoteId}',
     config: {
       tags: ['api']
     },
@@ -35,7 +35,7 @@ const quoteRoutes = [
   },
   {
     method: 'PUT',
-    path: '/quotes/{quoteId}',
+    path: '/api/v1/quotes/{quoteId}',
     config: {
       tags: ['api']
     },
