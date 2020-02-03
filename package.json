@@ -1,0 +1,21 @@
+{
+  "name": "quotes",
+  "version": "1.0.0",
+  "description": "Sports quotes",
+  "author": "",
+  "license": "MIT",
+  "main": "server.js",
+  "scripts": {
+    "dev": "docker-compose up"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^19.0.5",
+    "@hapi/inert": "^6.0.1",
+    "@hapi/vision": "^6.0.0",
+    "hapi-swagger": "^12.1.0",
+    "mongoose": "^5.4.10"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
