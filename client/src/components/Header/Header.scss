@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.logo {
+  font-size: 30px;
+  font-family: 'Montserrat-Bold', serif;
+  margin-top: 30px;
+
+  a {
+    color: #4a69bd;
+  }
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 60%;
+  margin-top: 30px;
+
+  &__item {
+    color: #fff;
+
+    a {
+      color: #f6e58d;
+      font-size: 22px;
+      font-family: 'Ubuntu-Regular', sans-serif;
+    }
+  }
+}
