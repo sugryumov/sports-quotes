@@ -7,7 +7,6 @@ import ErrorComponent from "../components/ErrorComponent/ErrorComponent";
 import Content from "./Content/Content";
 import Footer from "./Footer/Footer";
 import "../assets/styles/global.scss";
-import Container from "@material-ui/core/Container";
 
 function App() {
   return (
@@ -16,11 +15,11 @@ function App() {
         <Router>
           <div className="App">
             <div className="bg" />
-            <Container>
+            <div className="container">
               <Header />
               <Content />
-              <Footer />
-            </Container>
+            </div>
+            <Footer />
           </div>
         </Router>
       </ErrorBoundary>

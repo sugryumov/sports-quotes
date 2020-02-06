@@ -3,6 +3,7 @@ import "./Content.scss";
 import { StoreContext } from "../../context";
 import { getQuotes } from "../../helpers/services";
 import ListQuotes from "../../components/ListQuotes/ListQuotes";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 function Content() {
   const context = useContext(StoreContext);
@@ -33,6 +34,15 @@ function Content() {
         perspiciatis ipsa hic, at quae recusandae ad error quas molestias cumque
         exercitationem possimus.
       </p>
+      <Link
+        activeClass="active"
+        to="menu"
+        spy
+        smooth
+        offset={-70}
+        duration={500}
+        className="arrow"
+      />
       <ListQuotes items={test} />
     </main>
   );

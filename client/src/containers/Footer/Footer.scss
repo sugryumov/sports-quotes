@@ -1,8 +1,13 @@
 .footer {
-  margin-top: 40px;
+  padding: 80px 0;
+  margin-top: 80px;
+  background-color: #041D1A;
 
   &__content {
+    width: 1170px;
     display: flex;
+    margin-right: auto;
+    margin-left: auto;
     justify-content: space-between;
     align-items: center;
   }
@@ -11,7 +16,6 @@
     color: #4A69BD;
     font-size: 30px;
     font-family: 'Montserrat-Bold', serif;
-    margin-top: 30px;
   }
 
   &__subscribe {

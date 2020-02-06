@@ -1,4 +1,10 @@
 .quote {
+  background-color: rgba(34, 47, 62, 0.7);
+  border-radius: 4px;
+  box-shadow: 1px 4px 30px 17px #000000;
+  margin-bottom: 50px;
+  padding: 10px 20px;
+
   &__title {
     margin-top: 20px;
     color: #c7ecee;

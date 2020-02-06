@@ -11,7 +11,7 @@ function Header(): ReactElement {
       <div className="logo">
         <Link to="/">Logo</Link>
       </div>
-      <ul className="menu">
+      <ul className="menu" id="menu">
         <li className="menu__item">
           <Link to="/">All</Link>
         </li>
