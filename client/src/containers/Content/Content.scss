@@ -1,18 +1,17 @@
 .main {
-  margin-top: 100px;
-  position: relative;
-  width: 60%;
+  margin-top: -40px;
+}
 
-  &__text {
-    color: #48dbfb;
-    font-size: 20px;
-    margin-top: 30px;
-    margin-bottom: 60px;
-    line-height: 30px;
-  }
+.main__text {
+  color: #fff;
+  font-size: 18px;
+  margin-top: 30px;
+  margin-bottom: 100px;
+  line-height: 1.6;
+}
 
-  &__title {
-    color: #6D214F;
-    font-size: 50px;
-  }
+.main__title {
+  color: #fff;
+  font-size: 36px;
+  text-transform: uppercase;
 }

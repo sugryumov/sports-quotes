@@ -8,26 +8,39 @@ function Header(): ReactElement {
 
   return (
     <header className="header">
-      <div className="logo">
-        <Link to="/">Logo</Link>
+      <div className="header__content container">
+        <Link className="logo" to="/">
+          Logo
+        </Link>
+
+        <ul className="menu">
+          <li className="menu__item">
+            <Link className="menu__link" to="/">
+              All
+            </Link>
+          </li>
+          <li className="menu__item">
+            <Link className="menu__link" to="/football">
+              Football
+            </Link>
+          </li>
+          <li className="menu__item">
+            <Link className="menu__link" to="/hockey">
+              Hockey
+            </Link>
+          </li>
+          <li className="menu__item">
+            <Link className="menu__link" to="/basketball">
+              Basketball
+            </Link>
+          </li>
+          <li className="menu__item">
+            <Link className="menu__link" to="/formula1">
+              Formula-1
+            </Link>
+          </li>
+        </ul>
       </div>
-      <ul className="menu">
-        <li className="menu__item">
-          <Link to="/">All</Link>
-        </li>
-        <li className="menu__item">
-          <Link to="/football">Football</Link>
-        </li>
-        <li className="menu__item">
-          <Link to="/hockey">Hockey</Link>
-        </li>
-        <li className="menu__item">
-          <Link to="/basketball">Basketball</Link>
-        </li>
-        <li className="menu__item">
-          <Link to="/formula1">Formula-1</Link>
-        </li>
-      </ul>
     </header>
   );
 }
