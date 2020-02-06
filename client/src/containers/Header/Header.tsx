@@ -1,6 +1,7 @@
 import React, { ReactElement, useContext } from "react";
 import { StoreContext } from "../../context";
 import { Link } from "react-router-dom";
+import { svgHolder } from "../../helpers/svgHolders";
 import "./Header.scss";
 
 function Header(): ReactElement {
@@ -10,7 +11,7 @@ function Header(): ReactElement {
     <header className="header">
       <div className="header__content container">
         <Link className="logo" to="/">
-          Logo
+          {svgHolder.logotype}
         </Link>
 
         <ul className="menu">

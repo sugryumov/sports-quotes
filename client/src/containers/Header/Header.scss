@@ -1,5 +1,5 @@
 .header {
-  padding: 22px 0;
+  padding: 27px 0 0;
   background-color: transparent;
 }
 
@@ -10,9 +10,10 @@
 }
 
 .logo {
-  font-size: 30px;
-  font-family: "Montserrat-Bold", serif;
-  color: #dd5927;
+  svg {
+    width: 200px;
+    height: 50px;
+  }
 }
 
 .menu {

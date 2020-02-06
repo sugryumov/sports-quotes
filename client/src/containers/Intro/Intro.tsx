@@ -5,7 +5,7 @@ function Intro(): ReactElement {
   return (
     <div className="intro">
       <div className="container">
-        <h1 className="intro__title">Sport quotes</h1>
+        <h1 className="intro__title">Цитаты спортсменов</h1>
         <p className="intro__text">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus dolorem
           velit veritatis delectus laborum quaerat hic, officiis nobis
