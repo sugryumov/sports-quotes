@@ -6,8 +6,8 @@ const createQuote = async (request, h) => {
     const result = await quote.save();
 
     return h.response(result);
-  } catch (error) {
-    return h.response(error).code(500);
+  } catch (err) {
+    return h.response(err).code(500);
   }
 };
 
@@ -36,11 +36,11 @@ const getAllQuotes = async (request, h) => {
     const quotes = await Quote.find(query)
       .sort({ date: -1 })
       .skip(+request.query.offset)
-      .limit(+req.query.limit);
+      .limit(+request.query.limit);
 
     return h.response(quotes);
   } catch (err) {
-    return h.response(error).code(500);
+    return h.response(err).code(500);
   }
 };
 
@@ -49,8 +49,8 @@ const getQuote = async (request, h) => {
     const quote = await Quote.findById(request.params.quoteId);
 
     return h.response(quote);
-  } catch (error) {
-    return h.response(error).code(500);
+  } catch (err) {
+    return h.response(err).code(500);
   }
 };
 
