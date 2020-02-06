@@ -6,18 +6,41 @@ const createQuote = async (request, h) => {
     const result = await quote.save();
 
     return h.response(result);
-  } catch (error) {
-    return h.response(error).code(500);
+  } catch (err) {
+    return h.response(err).code(500);
   }
 };
 
 const getAllQuotes = async (request, h) => {
+  const query = {};
+
+  if (request.query.start) {
+    query.date = {
+      $gte: request.query.start
+    };
+  }
+
+  if (request.query.end) {
+    if (!query.date) {
+      query.date = {};
+    }
+
+    query.date['$lte'] = request.query.end;
+  }
+
+  if (request.query.quote) {
+    query.quote = +request.query.quote;
+  }
+
   try {
-    const quotes = await Quote.find();
+    const quotes = await Quote.find(query)
+      .sort({ date: -1 })
+      .skip(+request.query.offset)
+      .limit(+request.query.limit);
 
     return h.response(quotes);
-  } catch {
-    return h.response(error).code(500);
+  } catch (err) {
+    return h.response(err).code(500);
   }
 };
 
@@ -26,8 +49,8 @@ const getQuote = async (request, h) => {
     const quote = await Quote.findById(request.params.quoteId);
 
     return h.response(quote);
-  } catch (error) {
-    return h.response(error).code(500);
+  } catch (err) {
+    return h.response(err).code(500);
   }
 };
 
