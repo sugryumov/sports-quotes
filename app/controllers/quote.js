@@ -12,11 +12,34 @@ const createQuote = async (request, h) => {
 };
 
 const getAllQuotes = async (request, h) => {
+  const query = {};
+
+  if (request.query.start) {
+    query.date = {
+      $gte: request.query.start
+    };
+  }
+
+  if (request.query.end) {
+    if (!query.date) {
+      query.date = {};
+    }
+
+    query.date['$lte'] = request.query.end;
+  }
+
+  if (request.query.quote) {
+    query.quote = +request.query.quote;
+  }
+
   try {
-    const quotes = await Quote.find();
+    const quotes = await Quote.find(query)
+      .sort({ date: -1 })
+      .skip(+request.query.offset)
+      .limit(+req.query.limit);
 
     return h.response(quotes);
-  } catch {
+  } catch (err) {
     return h.response(error).code(500);
   }
 };
