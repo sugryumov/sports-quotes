@@ -1,8 +1,6 @@
 import React, { ReactElement } from "react";
 import "./Footer.scss";
 
-interface Props {}
-
 function Footer() {
   return (
     <footer className="footer">

@@ -29,5 +29,31 @@
       font-size: 22px;
       font-family: 'Ubuntu-Regular', sans-serif;
     }
+
+    &:nth-child(2) {
+      a {
+        color: #2ed573;
+      }
+    }
+
+    &:nth-child(3) {
+      a {
+        color: #1e90ff;
+      }
+    }
+
+    &:nth-child(4) {
+      a {
+        color: #ff7f50;
+      }
+    }
+
+    &:nth-child(5) {
+      a {
+        color: #786fa6;
+      }
+    }
   }
+
+
 }

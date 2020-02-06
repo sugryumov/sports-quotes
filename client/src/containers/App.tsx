@@ -1,24 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import StoreProvider from "../context";
-import Header from "../components/Header/Header";
-import { getList } from "../helpers/services";
+import Header from "./Header/Header";
 import ErrorBoundary from "react-error-boundary";
 import ErrorComponent from "../components/ErrorComponent/ErrorComponent";
-import Content from "../components/Content/Content";
-import Footer from "../components/Footer/Footer";
+import Content from "./Content/Content";
+import Footer from "./Footer/Footer";
 import "../assets/styles/global.scss";
 import Container from "@material-ui/core/Container";
 
-export interface HelloProps {
-  value: string;
-}
-
-function App(props: HelloProps) {
-  useEffect(() => {
-    getList();
-  }, []);
-
+function App() {
   return (
     <StoreProvider>
       <ErrorBoundary FallbackComponent={ErrorComponent}>

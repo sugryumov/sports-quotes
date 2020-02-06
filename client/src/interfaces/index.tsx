@@ -1,6 +1,11 @@
-export interface IStock {
-  _id: string;
-  uuid: string;
-  store: string;
-  quantity: number;
+export interface IPropsListQuotes {
+  items: Array<IQuoteItem>;
+}
+export interface IQuoteItem {
+  id: string;
+  quote: string;
+  author: string;
+}
+export interface IQuote {
+  item: IQuoteItem;
 }

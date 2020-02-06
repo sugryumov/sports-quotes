@@ -1,0 +1,18 @@
+.main {
+  margin-top: 100px;
+  position: relative;
+  width: 60%;
+
+  &__text {
+    color: #48dbfb;
+    font-size: 20px;
+    margin-top: 30px;
+    margin-bottom: 60px;
+    line-height: 30px;
+  }
+
+  &__title {
+    color: #6D214F;
+    font-size: 50px;
+  }
+}
