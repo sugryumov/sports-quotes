@@ -32,6 +32,10 @@ const getAllQuotes = async (request, h) => {
     query.quote = +request.query.quote;
   }
 
+  if (request.query.category) {
+    query.category = request.query.category;
+  }
+
   try {
     const quotes = await Quote.find(query)
       .sort({ date: -1 })
