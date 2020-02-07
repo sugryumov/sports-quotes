@@ -1,11 +1,10 @@
 const Joi = require('@hapi/joi');
-const quoteControllers = require('../controllers/quote');
+const controller = require('../controllers/quote');
 
 const quoteRoutes = [
   {
     method: 'POST',
     path: '/api/v1/create-quote',
-    handler: quoteControllers.createQuote,
     options: {
       tags: ['api'],
       validate: {
@@ -21,7 +20,8 @@ const quoteRoutes = [
             .required()
         })
       }
-    }
+    },
+    handler: controller.createQuote
   },
   {
     method: 'GET',
@@ -38,7 +38,7 @@ const quoteRoutes = [
         })
       }
     },
-    handler: quoteControllers.getAllQuotes
+    handler: controller.getAllQuotes
   },
   {
     method: 'GET',
@@ -46,7 +46,7 @@ const quoteRoutes = [
     config: {
       tags: ['api']
     },
-    handler: quoteControllers.getQuote
+    handler: controller.getQuote
   },
   {
     method: 'DELETE',
@@ -59,7 +59,7 @@ const quoteRoutes = [
         })
       }
     },
-    handler: quoteControllers.removeQuote
+    handler: controller.removeQuote
   },
   {
     method: 'PUT',
@@ -74,7 +74,7 @@ const quoteRoutes = [
         })
       }
     },
-    handler: quoteControllers.putQuote
+    handler: controller.putQuote
   }
 ];
 

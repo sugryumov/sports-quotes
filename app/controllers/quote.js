@@ -1,4 +1,4 @@
-const Quote = require('../models/quote');
+const Quote = require('../models/Quote');
 
 const createQuote = async (request, h) => {
   try {

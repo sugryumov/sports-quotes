@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const QuoteSchema = mongoose.Schema({
+const quoteSchema = mongoose.Schema({
   quote: {
     type: String,
     require: true
@@ -10,8 +10,8 @@ const QuoteSchema = mongoose.Schema({
     require: true
   },
   category: {
-    type: String,
-    require: true
+    ref: 'categories',
+    type: mongoose.Schema.Types.String
   },
   date: {
     type: Date,
@@ -19,4 +19,4 @@ const QuoteSchema = mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Quotes', QuoteSchema);
+module.exports = mongoose.model('quotes', quoteSchema);
