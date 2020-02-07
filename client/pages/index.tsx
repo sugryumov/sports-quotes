@@ -1,18 +1,19 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
 import StoreProvider from "../context";
-import Header from "./Header/Header";
+import Header from "../components/Header/Header";
 import ErrorBoundary from "react-error-boundary";
 import ErrorComponent from "../components/ErrorComponent/ErrorComponent";
-import Content from "./Content/Content";
-import Footer from "./Footer/Footer";
+import Content from "../components/Content/Content";
+import Footer from "../components/Footer/Footer";
 import "../assets/styles/global.scss";
 
-function App() {
+interface Props {}
+
+const App: React.FC<Props> = () => {
   return (
-    <StoreProvider>
-      <ErrorBoundary FallbackComponent={ErrorComponent}>
-        <Router>
+    <div>
+      <StoreProvider>
+        <ErrorBoundary FallbackComponent={ErrorComponent}>
           <div className="App">
             <div className="bg" />
             <div className="container">
@@ -21,10 +22,10 @@ function App() {
             </div>
             <Footer />
           </div>
-        </Router>
-      </ErrorBoundary>
-    </StoreProvider>
+        </ErrorBoundary>
+      </StoreProvider>
+    </div>
   );
-}
+};
 
 export default App;

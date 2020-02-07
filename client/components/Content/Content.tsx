@@ -3,7 +3,7 @@ import "./Content.scss";
 import { StoreContext } from "../../context";
 import { getQuotes } from "../../helpers/services";
 import ListQuotes from "../../components/ListQuotes/ListQuotes";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
 
 function Content() {
   const context = useContext(StoreContext);
