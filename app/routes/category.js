@@ -6,7 +6,10 @@ const categoryRoutes = [
     method: 'GET',
     path: '/api/v1/categories',
     options: {
-      tags: ['api']
+      tags: ['api'],
+      auth: {
+        strategy: 'users'
+      }
     },
     handler: controller.getAll
   },
@@ -15,6 +18,9 @@ const categoryRoutes = [
     path: '/api/v1/create-category',
     options: {
       tags: ['api'],
+      auth: {
+        strategy: 'users'
+      },
       validate: {
         payload: Joi.object({
           name: Joi.string()
@@ -30,6 +36,9 @@ const categoryRoutes = [
     path: '/api/v1/categories/{categoryId}',
     options: {
       tags: ['api'],
+      auth: {
+        strategy: 'users'
+      },
       validate: {
         params: Joi.object({
           categoryId: Joi.string()
@@ -43,6 +52,9 @@ const categoryRoutes = [
     path: '/api/v1/categories/{categoryId}',
     options: {
       tags: ['api'],
+      auth: {
+        strategy: 'users'
+      },
       validate: {
         payload: Joi.object({
           name: Joi.string()
