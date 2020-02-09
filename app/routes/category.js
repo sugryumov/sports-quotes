@@ -4,9 +4,9 @@ const controller = require('../controllers/category');
 const categoryRoutes = [
   {
     method: 'GET',
-    path: '/api/v1/categories',
+    path: '/api/categories',
     options: {
-      tags: ['api'],
+      tags: ['api', 'category'],
       auth: {
         strategy: 'users'
       }
@@ -15,9 +15,9 @@ const categoryRoutes = [
   },
   {
     method: 'POST',
-    path: '/api/v1/create-category',
+    path: '/api/create-category',
     options: {
-      tags: ['api'],
+      tags: ['api', 'category'],
       auth: {
         strategy: 'users'
       },
@@ -33,9 +33,9 @@ const categoryRoutes = [
   },
   {
     method: 'DELETE',
-    path: '/api/v1/categories/{categoryId}',
+    path: '/api/categories/{categoryId}',
     options: {
-      tags: ['api'],
+      tags: ['api', 'category'],
       auth: {
         strategy: 'users'
       },
@@ -49,9 +49,9 @@ const categoryRoutes = [
   },
   {
     method: 'PUT',
-    path: '/api/v1/categories/{categoryId}',
+    path: '/api/categories/{categoryId}',
     options: {
-      tags: ['api'],
+      tags: ['api', 'category'],
       auth: {
         strategy: 'users'
       },

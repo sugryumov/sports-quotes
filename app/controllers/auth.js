@@ -75,4 +75,30 @@ const login = async (request, h) => {
   }
 };
 
-module.exports = { registration, login };
+const getAll = async (request, h) => {
+  try {
+    const users = await User.find();
+    const result = users.map((user) => {
+      return {
+        email: user.email,
+        _id: user._id
+      };
+    });
+
+    return h.response(result);
+  } catch (err) {
+    return h.response(err).code(500);
+  }
+};
+
+const remove = async (request, h) => {
+  try {
+    const deleteUser = await User.findByIdAndDelete(request.params.userId);
+
+    return h.response(deleteUser);
+  } catch (err) {
+    return h.response(err).code(500);
+  }
+};
+
+module.exports = { registration, login, getAll, remove };

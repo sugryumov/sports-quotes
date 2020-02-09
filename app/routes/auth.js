@@ -6,7 +6,7 @@ const authRoutes = [
     method: 'POST',
     path: '/api/auth/registration',
     options: {
-      tags: ['auth'],
+      tags: ['api', 'auth'],
       validate: {
         payload: Joi.object({
           email: Joi.string()
@@ -24,7 +24,7 @@ const authRoutes = [
     method: 'POST',
     path: '/api/auth/login',
     options: {
-      tags: ['auth'],
+      tags: ['api', 'auth'],
       validate: {
         payload: Joi.object({
           email: Joi.string()
@@ -37,6 +37,33 @@ const authRoutes = [
       }
     },
     handler: controller.login
+  },
+  {
+    method: 'GET',
+    path: '/api/auth/users',
+    options: {
+      tags: ['api', 'auth'],
+      auth: {
+        strategy: 'users'
+      }
+    },
+    handler: controller.getAll
+  },
+  {
+    method: 'DELETE',
+    path: '/api/auth/users/{userId}',
+    options: {
+      tags: ['api', 'auth'],
+      auth: {
+        strategy: 'users'
+      },
+      validate: {
+        params: Joi.object({
+          userId: Joi.string()
+        })
+      }
+    },
+    handler: controller.remove
   }
 ];
 

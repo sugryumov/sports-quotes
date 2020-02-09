@@ -4,9 +4,9 @@ const controller = require('../controllers/quote');
 const quoteRoutes = [
   {
     method: 'POST',
-    path: '/api/v1/create-quote',
+    path: '/api/create-quote',
     options: {
-      tags: ['api'],
+      tags: ['api', 'quote'],
       validate: {
         payload: Joi.object({
           quote: Joi.string()
@@ -25,9 +25,9 @@ const quoteRoutes = [
   },
   {
     method: 'GET',
-    path: '/api/v1/quotes',
+    path: '/api/quotes',
     options: {
-      tags: ['api'],
+      tags: ['api', 'quote'],
       validate: {
         query: Joi.object({
           limit: Joi.number()
@@ -42,17 +42,17 @@ const quoteRoutes = [
   },
   {
     method: 'GET',
-    path: '/api/v1/quotes/{quoteId}',
+    path: '/api/quotes/{quoteId}',
     config: {
-      tags: ['api']
+      tags: ['api', 'quote']
     },
     handler: controller.getQuote
   },
   {
     method: 'DELETE',
-    path: '/api/v1/quotes/{quoteId}',
+    path: '/api/quotes/{quoteId}',
     options: {
-      tags: ['api'],
+      tags: ['api', 'quote'],
       validate: {
         params: Joi.object({
           quoteId: Joi.string()
@@ -63,9 +63,9 @@ const quoteRoutes = [
   },
   {
     method: 'PUT',
-    path: '/api/v1/quotes/{quoteId}',
+    path: '/api/quotes/{quoteId}',
     options: {
-      tags: ['api'],
+      tags: ['api', 'quote'],
       validate: {
         payload: Joi.object({
           quote: Joi.string().min(10),
