@@ -6,6 +6,7 @@ const Vision = require('@hapi/vision');
 const HapiSwagger = require('hapi-swagger');
 const swaggerOptions = require('./config/swagger');
 const db = require('./config/db');
+const authRoutes = require('./app/routes/auth');
 const quoteRoutes = require('./app/routes/quote');
 const categoryRoutes = require('./app/routes/category');
 const viewsRoutes = require('./app/routes/views');
@@ -36,7 +37,7 @@ const init = async () => {
     }
   ]);
 
-  await server.route([...quoteRoutes, ...categoryRoutes]);
+  await server.route([...quoteRoutes, ...categoryRoutes, ...authRoutes]);
 
   if (process.env.NODE_ENV === 'production') {
     server.route([...viewsRoutes]);
