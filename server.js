@@ -4,12 +4,14 @@ const Hapi = require('@hapi/hapi');
 const Inert = require('@hapi/inert');
 const Vision = require('@hapi/vision');
 const HapiSwagger = require('hapi-swagger');
+const AuthBearer = require('hapi-auth-bearer-token');
 const swaggerOptions = require('./config/swagger');
 const db = require('./config/db');
 const authRoutes = require('./app/routes/auth');
 const quoteRoutes = require('./app/routes/quote');
 const categoryRoutes = require('./app/routes/category');
 const viewsRoutes = require('./app/routes/views');
+const userToken = require('./helpers/userToken');
 
 const init = async () => {
   const ifaces = os.networkInterfaces();
@@ -31,11 +33,16 @@ const init = async () => {
   await server.register([
     Inert,
     Vision,
+    AuthBearer,
     {
       plugin: HapiSwagger,
       options: swaggerOptions
     }
   ]);
+
+  server.auth.strategy('users', 'bearer-access-token', {
+    validate: userToken
+  });
 
   await server.route([...quoteRoutes, ...categoryRoutes, ...authRoutes]);
 
