@@ -1,31 +1,12 @@
-import React from "react";
-import StoreProvider from "../context";
-import Header from "../components/Header/Header";
-import ErrorBoundary from "react-error-boundary";
-import ErrorComponent from "../components/ErrorComponent/ErrorComponent";
-import Content from "../components/Content/Content";
-import Footer from "../components/Footer/Footer";
-import "../assets/styles/global.scss";
+import Link from 'next/link';
+import '../style.scss';
+import Head from '../components/head';
 
-interface Props {}
-
-const App: React.FC<Props> = () => {
-  return (
-    <div>
-      <StoreProvider>
-        <ErrorBoundary FallbackComponent={ErrorComponent}>
-          <div className="App">
-            <div className="bg" />
-            <div className="container">
-              <Header />
-              <Content />
-            </div>
-            <Footer />
-          </div>
-        </ErrorBoundary>
-      </StoreProvider>
-    </div>
-  );
-};
-
-export default App;
+export default () => (
+  <div className="App">
+    <Link href="/admin">
+      <a>go to admin panel</a>
+    </Link>
+    <Head title="sport quotes" />
+  </div>
+);
