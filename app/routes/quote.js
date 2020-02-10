@@ -7,6 +7,9 @@ const quoteRoutes = [
     path: '/api/create-quote',
     options: {
       tags: ['api', 'quote'],
+      auth: {
+        strategy: 'users'
+      },
       validate: {
         payload: Joi.object({
           quote: Joi.string()
@@ -53,6 +56,9 @@ const quoteRoutes = [
     path: '/api/quotes/{quoteId}',
     options: {
       tags: ['api', 'quote'],
+      auth: {
+        strategy: 'users'
+      },
       validate: {
         params: Joi.object({
           quoteId: Joi.string()
@@ -66,6 +72,9 @@ const quoteRoutes = [
     path: '/api/quotes/{quoteId}',
     options: {
       tags: ['api', 'quote'],
+      auth: {
+        strategy: 'users'
+      },
       validate: {
         payload: Joi.object({
           quote: Joi.string().min(10),
