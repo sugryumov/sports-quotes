@@ -10,7 +10,7 @@ export default ({ children }: any) => {
     loading,
     setLoading,
     quotesList,
-    setQuotesList,
+    setQuotesList
   };
 
   return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>;
