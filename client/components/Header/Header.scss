@@ -1,16 +1,18 @@
 .header {
+  padding: 27px 0 0;
+  background-color: transparent;
+}
+
+.header__content {
   display: flex;
   justify-content: space-between;
-  position: relative;
-  padding-top: 30px;
+  align-items: center;
 }
 
 .logo {
-  font-size: 30px;
-  font-family: 'Montserrat-Bold', serif;
-
-  a {
-    color: #4a69bd;
+  svg {
+    width: 200px;
+    height: 50px;
   }
 }
 
@@ -18,41 +20,20 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  width: 60%;
+}
 
-  &__item {
-    color: #fff;
+.menu__item {
+  color: #fff;
 
-    a {
-      color: #f6e58d;
-      font-size: 22px;
-      font-family: 'Ubuntu-Regular', sans-serif;
-    }
-
-    &:nth-child(2) {
-      a {
-        color: #2ed573;
-      }
-    }
-
-    &:nth-child(3) {
-      a {
-        color: #1e90ff;
-      }
-    }
-
-    &:nth-child(4) {
-      a {
-        color: #ff7f50;
-      }
-    }
-
-    &:nth-child(5) {
-      a {
-        color: #786fa6;
-      }
-    }
+  &:not(:last-child) {
+    margin-right: 40px;
   }
+}
 
-
+.menu__link {
+  color: #fff;
+  font-size: 16px;
+  font-family: 'Ubuntu-Regular', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
 }

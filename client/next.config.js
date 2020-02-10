@@ -8,15 +8,9 @@ module.exports = withSass(withFonts({
       "/": {
         page: "/"
       },
-      "/about": {
-        page: "/about"
-      },
-      "/about/one": {
-        page: "/about/one"
-      },
-      "/about/two": {
-        page: "/about/two"
-      },
+      "/admin": {
+        page: "/admin"
+      }
     };
   }
 }))

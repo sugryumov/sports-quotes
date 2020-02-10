@@ -1,6 +1,6 @@
-import React, { ReactElement } from "react";
-import { IPropsListQuotes, IQuoteItem } from "../../interfaces";
-import ItemQuote from "../ItemQuote/ItemQuote";
+import React, { ReactElement } from 'react';
+import { IPropsListQuotes, IQuoteItem } from '../../interfaces';
+import ItemQuote from '../ItemQuote/ItemQuote';
 
 function ListQuotes(props: IPropsListQuotes): ReactElement {
   return (

@@ -1,30 +1,25 @@
 .footer {
-  padding: 80px 0;
-  margin-top: 80px;
-  background-color: #041D1A;
+  background-color: #e0e0e0;
+  margin-top: 120px;
+  padding: 25px 0;
+}
 
-  &__content {
-    width: 1170px;
-    display: flex;
-    margin-right: auto;
-    margin-left: auto;
-    justify-content: space-between;
-    align-items: center;
-  }
+.footer__item {
+  width: 33%;
+}
 
-  &__logo {
-    color: #4A69BD;
-    font-size: 30px;
-    font-family: 'Montserrat-Bold', serif;
-  }
+.footer__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  &__subscribe {
-    color: #C2EDED;
-    font-size: 20px;
-  }
+.footer__subscribe {
+  color: #1c1c1c;
+  text-align: center;
+}
 
-  &__support {
-    color: #DFD185;
-    font-family: 'Montserrat-Bold', serif;
-  }
+.footer__support {
+  color: #1c1c1c;
+  text-align: right;
 }

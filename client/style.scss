@@ -25,8 +25,14 @@ html {
   height: 100%;
 }
 
+body {
+  background-color: #f2eeef;
+  font-family: 'Ubuntu-Regular';
+}
+
 h1 {
   font-size: 32px;
+  font-family: 'Montserrat-Bold';
 }
 
 h2 {
@@ -43,10 +49,6 @@ h4 {
 
 a {
   text-decoration: none;
-  color: #0097e6;
-  font-size: 20px;
-  display: block;
-  margin: 10px;
 }
 
 li,
@@ -56,20 +58,9 @@ ul {
   margin: 0;
 }
 
-.App {
-  min-height: 100vh;
-  background-image: url(/img/bg.jpeg);
-  background-size: cover;
-  position: relative;
-  color: #fff;
-  text-align: center;
-  padding-top: 100px;
-}
-
 .container {
-  margin-right: auto;
-  margin-left: auto;
-  width: 1170px;
-  position: relative;
-  min-height: 100vh;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
 }

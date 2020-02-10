@@ -1,36 +1,17 @@
 .main {
-  margin-top: 100px;
-  position: relative;
-  width: 60%;
-  margin-bottom: 60px;
-
-  &__text {
-    color: #48dbfb;
-    font-size: 20px;
-    margin-top: 30px;
-    margin-bottom: 60px;
-    line-height: 30px;
-  }
-
-  &__title {
-    color: #6d214f;
-    font-size: 50px;
-  }
-  .arrow {
-    position: fixed;
-    left: 200px;
-    width: 40px;
-    height: 40px;
-    display: block;
-    background-image: url("../../assets/img/arrow.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    transform: rotate(180deg);
-    cursor: pointer;
-  }
+  margin-top: -40px;
 }
 
-.main > .active {
-  background-color: #fff;
+.main__text {
+  color: #fff;
+  font-size: 18px;
+  margin-top: 30px;
+  margin-bottom: 100px;
+  line-height: 1.6;
+}
+
+.main__title {
+  color: #fff;
+  font-size: 36px;
+  text-transform: uppercase;
 }
