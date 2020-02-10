@@ -3,6 +3,9 @@ const withFonts = require('nextjs-fonts');
 
 module.exports = withSass(withFonts({
   exportTrailingSlash: true,
+  devIndicators: {
+    autoPrerender: false,
+  },
   exportPathMap: function () {
     return {
       "/": {

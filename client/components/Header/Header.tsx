@@ -6,7 +6,7 @@ import './Header.scss';
 function Header(): ReactElement {
   return (
     <header className="header">
-      <div className="header__content container">
+      <nav className="header__content container">
         <Link href="/">
           <a className="logo">{svgHolder.logotype}</a>
         </Link>
@@ -38,7 +38,7 @@ function Header(): ReactElement {
             </Link>
           </li>
         </ul>
-      </div>
+      </nav>
     </header>
   );
 }
