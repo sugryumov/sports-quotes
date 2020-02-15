@@ -25,7 +25,7 @@ function PaginationControlled(props: any): ReactElement {
   return (
     <div className={classes.root}>
       <ListQuotes items={props.items} />
-      <Pagination count={5} page={page} onChange={handleChange} />
+      <Pagination count={props.count} page={page} onChange={handleChange} />
     </div>
   );
 }

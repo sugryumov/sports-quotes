@@ -11,14 +11,17 @@ function Content() {
 
   useEffect(() => {
     getQuotes(context.startPage, context.limitPages)
-      .then(res => context.setQuotesList(res.data))
+      .then(res => {
+        context.setQuotesList(res.data.quotes);
+        context.setQuotesCount(Math.ceil(res.data.count / context.limitPages));
+      })
       .catch(err => console.log(err));
   }, []);
 
   const updatePages = (start: number) => {
     context.setStartPage(start - 1);
     getQuotes((start - 1) * context.limitPages, context.limitPages)
-      .then(res => context.setQuotesList(res.data))
+      .then(res => context.setQuotesList(res.data.quotes))
       .catch(err => console.log(err));
   };
 
@@ -32,6 +35,7 @@ function Content() {
         <ErrorBoundary FallbackComponent={ErrorComponent}>
           <PaginationControlled
             items={newListQuotes}
+            count={context.quotesCount}
             startPage={context.startPage}
             updatePages={updatePages}
             limitPages={context.limitPages}
