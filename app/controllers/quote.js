@@ -55,7 +55,12 @@ const getAllQuotes = async (request, h) => {
       .skip(+request.query.offset)
       .limit(+request.query.limit);
 
-    return h.response(quotes);
+    const count = quotes.length;
+
+    return h.response({
+      quotes,
+      count
+    });
   } catch (err) {
     return h.response(err).code(500);
   }
