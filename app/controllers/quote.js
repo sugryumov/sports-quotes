@@ -55,7 +55,7 @@ const getAllQuotes = async (request, h) => {
       .skip(+request.query.offset)
       .limit(+request.query.limit);
 
-    const count = await Quote.find()
+    const count = await Quote.find(query)
       .countDocuments()
       .exec();
 
