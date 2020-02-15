@@ -19,11 +19,7 @@ function PaginationControlled(props: any): ReactElement {
 
   const handleChange = (_event: any, value: any) => {
     setPage(value);
-    if (props.startPage === 0) {
-      props.updatePages(value, props.limitPages);
-    } else {
-      props.updatePages(value + props.limitPages, props.limitPages);
-    }
+    props.updatePages(value);
   };
 
   return (

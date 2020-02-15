@@ -15,9 +15,9 @@ function Content() {
       .catch(err => console.log(err));
   }, []);
 
-  const updatePages = (start: number, limit: number) => {
-    context.setStartPage(start);
-    getQuotes(start, limit)
+  const updatePages = (start: number) => {
+    context.setStartPage(start - 1);
+    getQuotes((start - 1) * context.limitPages, context.limitPages)
       .then(res => context.setQuotesList(res.data))
       .catch(err => console.log(err));
   };
