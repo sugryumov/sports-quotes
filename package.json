@@ -19,8 +19,7 @@
     "bcryptjs": "^2.4.3",
     "hapi-auth-bearer-token": "^6.1.4",
     "hapi-swagger": "^12.1.0",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.4.10"
+    "mongoose": "^5.7.5"
   },
   "devDependencies": {
     "cross-env": "^7.0.0",
