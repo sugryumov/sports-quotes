@@ -6,10 +6,7 @@ const categoryRoutes = [
     method: 'GET',
     path: '/api/categories',
     options: {
-      tags: ['api', 'category'],
-      auth: {
-        strategy: 'users'
-      }
+      tags: ['api', 'category']
     },
     handler: controller.getAll
   },
