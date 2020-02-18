@@ -5,6 +5,8 @@ import { getQuotes } from '../../helpers/services';
 import ErrorBoundary from 'react-error-boundary';
 import ErrorComponent from '../ErrorComponent/ErrorComponent';
 import PaginationControlled from '../PaginationControlled/PaginationControlled';
+import ScrollToTop from 'react-scroll-up';
+import ArrowUpwardRoundedIcon from '@material-ui/icons/ArrowUpwardRounded';
 
 function Content() {
   const context = useContext(StoreContext);
@@ -29,6 +31,16 @@ function Content() {
     return { id: item._id, quote: item.quote, author: item.author };
   });
 
+  const styleScroll = {
+    position: 'fixed',
+    bottom: 200,
+    right: 100,
+    cursor: 'pointer',
+    transitionDuration: '0.2s',
+    transitionTimingFunction: 'linear',
+    transitionDelay: '0s',
+  };
+
   return (
     <main className="main">
       <div className="container">
@@ -40,6 +52,9 @@ function Content() {
             updatePages={updatePages}
             limitPages={context.limitPages}
           />
+          <ScrollToTop showUnder={60} style={styleScroll}>
+            <ArrowUpwardRoundedIcon fontSize="large" htmlColor="#DD5927" />
+          </ScrollToTop>
         </ErrorBoundary>
       </div>
     </main>

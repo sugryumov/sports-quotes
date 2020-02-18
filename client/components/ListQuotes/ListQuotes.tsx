@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { IPropsListQuotes, IQuoteItem } from '../../interfaces';
 import ItemQuote from '../ItemQuote/ItemQuote';
+import './ListQuotes.scss';
 
 function ListQuotes(props: IPropsListQuotes): ReactElement {
   return (

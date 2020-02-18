@@ -1,21 +1,11 @@
 import React, { ReactElement, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 import ListQuotes from '../ListQuotes/ListQuotes';
-
-// interface Props {}
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    '& > *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-}));
+import Filter from '../Filter/Filter';
+import './PaginationControlled.scss';
 
 function PaginationControlled(props: any): ReactElement {
   const [page, setPage] = useState(1);
-  const classes = useStyles();
 
   const handleChange = (_event: any, value: any) => {
     setPage(value);
@@ -23,9 +13,12 @@ function PaginationControlled(props: any): ReactElement {
   };
 
   return (
-    <div className={classes.root}>
-      <ListQuotes items={props.items} />
-      <Pagination count={props.count} page={page} onChange={handleChange} />
+    <div className="pagination-controlled">
+      <div className="pagination-controlled__wrapper">
+        <ListQuotes items={props.items} />
+        <Pagination count={props.count} page={page} onChange={handleChange} />
+      </div>
+      <Filter />
     </div>
   );
 }
