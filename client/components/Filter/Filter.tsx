@@ -14,9 +14,10 @@ function Filter({}: Props): ReactElement {
 
   const getQuotesForNewlimit = () => {
     context.setLimitPages(limitCount);
-    getQuotes(context.startPage, limitCount)
+    getQuotes(0, limitCount)
       .then(res => {
         context.setQuotesList(res.data.quotes);
+        context.setStartPage(0);
         context.setQuotesCount(Math.ceil(res.data.count / limitCount));
       })
       .catch(err => console.log(err));
