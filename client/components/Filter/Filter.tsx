@@ -1,32 +1,50 @@
-import React, { ReactElement, useState, useContext } from 'react';
+import React, { ReactElement, useContext } from 'react';
+import { StoreContext } from '../../context';
+import { getQuotes } from '../../helpers/services';
 import Button from '../Button/Button';
 import Select from '../Select/Select';
 import './Filter.scss';
-import { StoreContext } from '../../context';
-import { getQuotes } from '../../helpers/services';
 
-interface Props {}
-
-function Filter({}: Props): ReactElement {
+function Filter(): ReactElement {
   const context = useContext(StoreContext);
 
-  const [limitCount, setLimitCount] = useState(context.limitPages);
+  const selectListLimit = [
+    { name: 2, _id: Date.now() + 1 },
+    { name: 5, _id: Date.now() + 2 },
+    { name: 10, _id: Date.now() + 3 },
+  ];
 
-  const getQuotesForNewlimit = () => {
-    context.setLimitPages(limitCount);
-    getQuotes(0, limitCount)
+  const getQuotesForNewFilters = () => {
+    context.setLimitPages(context.limitPages);
+
+    const newStateCategory = context.category === 'Все' ? null : context.category;
+
+    getQuotes(0, context.limitPages, newStateCategory)
       .then(res => {
         context.setQuotesList(res.data.quotes);
         context.setStartPage(0);
-        context.setQuotesCount(Math.ceil(res.data.count / limitCount));
+        context.setQuotesCount(Math.ceil(res.data.count / context.limitPages));
       })
       .catch(err => console.log(err));
   };
 
   return (
     <div className="filter">
-      <Select setLimitCount={setLimitCount} />
-      <Button func={getQuotesForNewlimit} isDisabled={false} />
+      <Select
+        value={context.category}
+        func={context.setCategory}
+        type={'category'}
+        title="Категории"
+        data={context.categoriesList}
+      />
+      <Select
+        value={context.limitPages}
+        func={context.setLimitPages}
+        type={'limitPages'}
+        title="Показывать по"
+        data={selectListLimit}
+      />
+      <Button func={getQuotesForNewFilters} isDisabled={false} />
     </div>
   );
 }
