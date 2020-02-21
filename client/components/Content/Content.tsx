@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import './Content.scss';
 import { StoreContext } from '../../context';
-import { getQuotes } from '../../helpers/services';
+import { getQuotes, getCategories } from '../../helpers/services';
 import ErrorBoundary from 'react-error-boundary';
 import ErrorComponent from '../ErrorComponent/ErrorComponent';
 import PaginationControlled from '../PaginationControlled/PaginationControlled';
@@ -12,17 +12,20 @@ function Content() {
   const context = useContext(StoreContext);
 
   useEffect(() => {
-    getQuotes(context.startPage, context.limitPages)
+    Promise.all([getQuotes(context.startPage, context.limitPages), getCategories()])
       .then(res => {
-        context.setQuotesList(res.data.quotes);
-        context.setQuotesCount(Math.ceil(res.data.count / context.limitPages));
+        context.setCategoriesList(res[1].data);
+        context.setQuotesList(res[0].data.quotes);
+        context.setQuotesCount(Math.ceil(res[0].data.count / context.limitPages));
       })
       .catch(err => console.log(err));
   }, []);
 
   const updatePages = (start: number) => {
+    const newStateCategory = context.category === 'Все' ? null : context.category;
+
     context.setStartPage(start - 1);
-    getQuotes((start - 1) * context.limitPages, context.limitPages)
+    getQuotes((start - 1) * context.limitPages, context.limitPages, newStateCategory)
       .then(res => context.setQuotesList(res.data.quotes))
       .catch(err => console.log(err));
   };
