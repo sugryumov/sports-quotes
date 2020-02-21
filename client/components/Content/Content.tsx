@@ -36,8 +36,8 @@ function Content() {
 
   const styleScroll = {
     position: 'fixed',
-    bottom: 200,
-    right: 100,
+    bottom: 50,
+    right: 50,
     cursor: 'pointer',
     transitionDuration: '0.2s',
     transitionTimingFunction: 'linear',
