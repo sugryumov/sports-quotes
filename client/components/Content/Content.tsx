@@ -55,7 +55,7 @@ function Content() {
             updatePages={updatePages}
             limitPages={context.limitPages}
           />
-          <ScrollToTop showUnder={60} style={styleScroll}>
+          <ScrollToTop showUnder={160} style={styleScroll}>
             <ArrowUpwardRoundedIcon fontSize="large" htmlColor="#DD5927" />
           </ScrollToTop>
         </ErrorBoundary>
