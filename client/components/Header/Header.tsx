@@ -10,36 +10,6 @@ function Header(): ReactElement {
         <Link href="/">
           <a className="logo">{svgHolder.logotype}</a>
         </Link>
-
-        <nav className="menu">
-          <ul className="menu__list">
-            <li className="menu__item">
-              <Link href="/">
-                <a className="menu__link">All</a>
-              </Link>
-            </li>
-            <li className="menu__item">
-              <Link href="/">
-                <a className="menu__link">Football</a>
-              </Link>
-            </li>
-            <li className="menu__item">
-              <Link href="/">
-                <a className="menu__link">Hockey</a>
-              </Link>
-            </li>
-            <li className="menu__item">
-              <Link href="/">
-                <a className="menu__link">Basketball</a>
-              </Link>
-            </li>
-            <li className="menu__item">
-              <Link href="/">
-                <a className="menu__link">Formula-1</a>
-              </Link>
-            </li>
-          </ul>
-        </nav>
       </div>
     </header>
   );

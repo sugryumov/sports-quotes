@@ -1,7 +1,11 @@
-.admin {
+.auth-page {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+}
+.auth-page__error {
+  color: #fb7272;
 }

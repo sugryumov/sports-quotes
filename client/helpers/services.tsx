@@ -8,3 +8,7 @@ export function getQuotes(start: number, limit: number, category?: string): Prom
 export function getCategories(): Promise<AxiosResponse> {
   return axios.get(`${BASE_URL}/categories`);
 }
+
+export function authAdmin(email: string, password: string): Promise<AxiosResponse> {
+  return axios.post(`${BASE_URL}/auth/login`, { email, password });
+}
