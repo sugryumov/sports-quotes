@@ -1,15 +1,15 @@
-import { makeStyles } from '@material-ui/core/styles';
-import React, { useState, useContext, ReactElement } from 'react';
-import { StoreContext } from '../../context/admin';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import './FormAuth.scss';
+import { useRouter } from 'next/router';
+import React, { ReactElement, useContext, useState } from 'react';
+import { StoreContext } from '../../context/admin';
 import { writeDataToLocalStorage } from '../../helpers';
 import { authAdmin } from '../../helpers/services';
-import { useRouter } from 'next/router';
+import './FormAuth.scss';
 
 const useStyles = makeStyles(theme => ({
   avatar: {
@@ -46,7 +46,7 @@ function FormAuth(): ReactElement {
       .catch(err => {
         console.log(err);
         setShowError(true);
-        setErrMessage('Неверный логин или пароль');
+        setErrMessage('Некорректная почта или пароль');
       });
   };
 
