@@ -1,18 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './style.scss';
-import Link from 'next/link';
+import StoreProvider from '../../context/admin';
+import AdminPanel from '../../components/AdminPanel/AdminPanel';
 
-interface Props {}
-
-const Admin: React.FC<Props> = () => {
+function Admin() {
   return (
-    <div className="admin">
-      Админка{' '}
-      <Link href="/">
-        <a>go /</a>
-      </Link>
-    </div>
+    <StoreProvider>
+      <div className="admin">
+        <AdminPanel />
+      </div>
+    </StoreProvider>
   );
-};
+}
 
 export default Admin;
