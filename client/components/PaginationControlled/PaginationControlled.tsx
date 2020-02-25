@@ -18,7 +18,7 @@ function PaginationControlled(props: any): ReactElement {
         <ListQuotes items={props.items} />
         <Pagination count={props.count} page={page} onChange={handleChange} />
       </div>
-      <Filter />
+      <Filter setPage={setPage} />
     </div>
   );
 }

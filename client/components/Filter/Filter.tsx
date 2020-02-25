@@ -5,7 +5,11 @@ import Button from '../Button/Button';
 import Select from '../Select/Select';
 import './Filter.scss';
 
-function Filter(): ReactElement {
+interface IFilterProps {
+  setPage(value: number): void;
+}
+
+function Filter(props: IFilterProps): ReactElement {
   const context = useContext(StoreContext);
 
   const selectListLimit = [
@@ -19,6 +23,7 @@ function Filter(): ReactElement {
 
     const newStateCategory = context.category === 'Все' ? null : context.category;
 
+    props.setPage(1);
     getQuotes(0, context.limitPages, newStateCategory)
       .then(res => {
         context.setQuotesList(res.data.quotes);
