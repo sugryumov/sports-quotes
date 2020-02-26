@@ -13,6 +13,9 @@ module.exports = withSass(withFonts({
       },
       "/admin": {
         page: "/admin"
+      },
+      "/admin/auth": {
+        page: "/admin/auth"
       }
     };
   }

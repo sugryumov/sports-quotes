@@ -1,11 +1,13 @@
 .auth-page {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  align-content: center;
   text-align: center;
 }
+
 .auth-page__error {
-  color: #fb7272;
+  min-height: 20px;
+  margin-top: 10px;
+  text-align: center;
+  color: #fb7373;
 }
