@@ -1,0 +1,13 @@
+.auth-page {
+  height: 100vh;
+  display: grid;
+  align-content: center;
+  text-align: center;
+}
+
+.auth-page__error {
+  min-height: 20px;
+  margin-top: 10px;
+  text-align: center;
+  color: #fb7373;
+}

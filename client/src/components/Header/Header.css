@@ -1,0 +1,21 @@
+.header {
+  padding: 27px 0 0;
+  background-color: transparent;
+}
+
+.header__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo svg {
+  width: 200px;
+  height: 50px;
+}
+
+@media (max-width: 900px) {
+  .header__content {
+    justify-content: center;
+  }
+}
