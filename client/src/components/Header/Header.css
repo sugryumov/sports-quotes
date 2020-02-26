@@ -7,41 +7,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
 
-  @media (max-width: 900px) {
+.logo svg {
+  width: 200px;
+  height: 50px;
+}
+
+@media (max-width: 900px) {
+  .header__content {
     justify-content: center;
   }
-}
-
-.logo {
-  svg {
-    width: 200px;
-    height: 50px;
-  }
-}
-
-.menu__list {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-
-  @media (max-width: 900px) {
-    display: none;
-  }
-}
-
-.menu__item {
-  color: #fff;
-
-  &:not(:last-child) {
-    margin-right: 40px;
-  }
-}
-
-.menu__link {
-  color: #fff;
-  font-size: 16px;
-  font-family: 'Ubuntu-Regular', sans-serif;
-  font-weight: bold;
-  text-transform: uppercase;
 }

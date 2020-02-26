@@ -10,11 +10,6 @@
   background-size: cover;
   background-position: top;
   clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);
-
-  @media (max-width: 600px) {
-    height: 500px;
-    padding-top: 130px;
-  }
 }
 
 .intro__text {
@@ -24,22 +19,31 @@
   margin-top: 30px;
   margin-bottom: 100px;
   line-height: 1.6;
-
-  @media (max-width: 900px) {
-    width: 100%;
-  }
-
-  @media (max-width: 600px) {
-    font-size: 16px;
-  }
 }
 
 .intro__title {
   color: #fff;
   font-size: 36px;
   text-transform: uppercase;
+}
 
-  @media (max-width: 600px) {
+@media (max-width: 900px) {
+  .intro__text {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .intro {
+    height: 500px;
+    padding-top: 130px;
+  }
+
+  .intro__text {
+    font-size: 16px;
+  }
+
+  .intro__title {
     font-size: 18px;
   }
 }

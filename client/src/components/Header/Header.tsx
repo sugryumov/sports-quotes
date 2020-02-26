@@ -7,7 +7,9 @@ function Header(): ReactElement {
   return (
     <header className="header">
       <div className="header__content container">
-        <Link to="/">{svgHolder.logotype}</Link>
+        <Link to="/" className="logo">
+          {svgHolder.logotype}
+        </Link>
       </div>
     </header>
   );

@@ -8,7 +8,9 @@ function Footer() {
     <footer className="footer">
       <div className="footer__content container">
         <div className="footer__logo footer__item">
-          <Link to="/">{svgHolder.logotype}</Link>
+          <Link to="/" className="logo">
+            {svgHolder.logotype}
+          </Link>
         </div>
         <div className="footer__subscribe footer__item">
           <p>Подписаться на новости</p>

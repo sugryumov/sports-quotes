@@ -6,10 +6,6 @@
   border-radius: 3px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-
-  @media (max-width: 900px) {
-    width: 100%;
-  }
 }
 
 .quote__title {
@@ -21,4 +17,10 @@
   color: #1c1c1c;
   font-size: 16px;
   line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .quote {
+    width: 100%;
+  }
 }
