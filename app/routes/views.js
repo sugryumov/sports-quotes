@@ -4,7 +4,7 @@ const viewsRoutes = [
     path: '/{param*}',
     handler: {
       directory: {
-        path: 'out',
+        path: 'public',
         index: ['index.html']
       }
     }
