@@ -13,8 +13,10 @@ import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import SearchIcon from '@material-ui/icons/Search';
-import React, { ReactElement, useContext } from 'react';
-import { StoreContext } from '../../context/admin';
+import React, { ReactElement } from 'react';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
+import { deleteDataToLocalStorage } from '../../helpers';
 
 // const useStyles = makeStyles({
 //   list: {
@@ -86,16 +88,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function AdminPanel(): ReactElement {
-  const context = useContext(StoreContext);
-
-  // useEffect(() => {
-  //   if (getTokenFromLocalStorage('tokenSmarthub')) {
-  //     checkToken(getTokenFromLocalStorage('expiresInSmarthub'), password);
-  //   } else {
-  //     history.push('/auth');
-  //   }
-  // }, [history, password]);
-
   const classes = useStyles();
   const [state, setState] = React.useState({
     left: false,
@@ -105,7 +97,6 @@ function AdminPanel(): ReactElement {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-
     setState({ left: open });
   };
 
@@ -159,6 +150,23 @@ function AdminPanel(): ReactElement {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
+          <IconButton
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
+          <IconButton
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            color="inherit"
+            onClick={deleteDataToLocalStorage}
+          >
+            <MeetingRoomIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <SwipeableDrawer open={state.left} onClose={toggleDrawer(false)} onOpen={toggleDrawer(true)}>

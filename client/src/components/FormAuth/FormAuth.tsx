@@ -4,9 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import { navigate } from 'gatsby';
-import React, { useContext, useState } from 'react';
-import { StoreContext } from '../../context/admin';
+import React, { useState } from 'react';
 import { writeDataToLocalStorage } from '../../helpers';
 import { authAdmin } from '../../helpers/services';
 import './FormAuth.css';
@@ -23,23 +21,26 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function FormAuth() {
-  const context = useContext(StoreContext);
+interface IFormAuth {
+  login: string;
+  setLogin(value: string): void;
+  password: string;
+  setPassword(value: string): void;
+  setIsLogIn(value: boolean): void;
+}
 
+export default function FormAuth(props: IFormAuth) {
   const [showError, setShowError] = useState(false);
   const [errMessage, setErrMessage] = useState('');
-
   const classes = useStyles();
-
-  console.log(context.login, context.password);
 
   const sendEmailAndPassword = (e: any) => {
     e.preventDefault();
-    authAdmin(context.login, context.password)
+    authAdmin(props.login, props.password)
       .then(res => {
         const { token, refreshToken, expiresIn } = res.data;
         writeDataToLocalStorage(token, refreshToken, expiresIn);
-        navigate('/admin');
+        props.setIsLogIn(true);
         setShowError(false);
         setErrMessage('');
       })
@@ -69,7 +70,7 @@ export default function FormAuth() {
           name="email"
           autoComplete="email"
           autoFocus
-          onChange={e => context.setLogin(e.target.value)}
+          onChange={e => props.setLogin(e.target.value)}
         />
         <TextField
           variant="outlined"
@@ -81,7 +82,7 @@ export default function FormAuth() {
           type="password"
           id="password"
           autoComplete="current-password"
-          onChange={e => context.setPassword(e.target.value)}
+          onChange={e => props.setPassword(e.target.value)}
         />
         <Button
           type="submit"
