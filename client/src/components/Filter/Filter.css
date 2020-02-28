@@ -11,7 +11,12 @@
 
 @media (max-width: 900px) {
   .filter {
-    width: 100%;
+    width: 50%;
     margin-bottom: 20px;
+  }
+}
+@media (max-width: 600px) {
+  .filter {
+    width: 100%;
   }
 }

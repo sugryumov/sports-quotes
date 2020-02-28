@@ -4,28 +4,34 @@ import { ThemeProvider } from '@material-ui/styles';
 import React, { ReactElement } from 'react';
 import './Button.css';
 
-const theme = createMuiTheme({
-  overrides: {
-    MuiButton: {
-      root: {
-        width: '100%',
-        color: '#E05927',
-      },
-    },
-  },
-});
-
 interface Props {
   func(): void;
-  isDisabled: boolean;
+  text: string;
+  color: string;
+  bg: string;
+  isDisabled?: boolean;
 }
 
 function Button(props: Props): ReactElement {
+  const rootStyles = {
+    width: 'auto',
+    color: props.color,
+    backgroundColor: props.bg,
+  };
+
+  const theme = createMuiTheme({
+    overrides: {
+      MuiButton: {
+        root: rootStyles,
+      },
+    },
+  });
+
   return (
     <div className="button">
       <ThemeProvider theme={theme}>
         <ButtonMaterial onClick={() => props.func()} disabled={props.isDisabled}>
-          Применить
+          {props.text}
         </ButtonMaterial>
       </ThemeProvider>
     </div>

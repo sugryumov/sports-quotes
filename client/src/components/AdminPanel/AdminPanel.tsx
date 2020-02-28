@@ -9,9 +9,10 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import MailIcon from '@material-ui/icons/Mail';
+import CategoryIcon from '@material-ui/icons/Category';
+import DescriptionIcon from '@material-ui/icons/Description';
+import FiberNewIcon from '@material-ui/icons/FiberNew';
 import MenuIcon from '@material-ui/icons/Menu';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import SearchIcon from '@material-ui/icons/Search';
 import React, { ReactElement } from 'react';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -108,12 +109,37 @@ function AdminPanel(): ReactElement {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        {['Категории', 'Статьи'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        {['Категории', 'Статьи', 'Предложенные цитаты'].map(text => {
+          switch (text) {
+            case 'Категории':
+              return (
+                <ListItem button key={text}>
+                  <ListItemIcon>
+                    <CategoryIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItem>
+              );
+            case 'Статьи':
+              return (
+                <ListItem button key={text}>
+                  <ListItemIcon>
+                    <DescriptionIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItem>
+              );
+            default:
+              return (
+                <ListItem button key={text}>
+                  <ListItemIcon>
+                    <FiberNewIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItem>
+              );
+          }
+        })}
       </List>
     </div>
   );
