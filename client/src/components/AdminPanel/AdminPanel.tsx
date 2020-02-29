@@ -18,6 +18,7 @@ import React, { ReactElement } from 'react';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import { deleteDataToLocalStorage } from '../../helpers';
+import Table from './Table/Table';
 
 // const useStyles = makeStyles({
 //   list: {
@@ -38,6 +39,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    overflow: 'auto',
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -144,8 +148,14 @@ function AdminPanel(): ReactElement {
     </div>
   );
 
-  {
-  }
+  const data = [
+    { id: '123', author: 'Baran', text: 'sdfsdgdgsdfsdfsdf' },
+    {
+      id: '546',
+      author: 'Jora',
+      text: 'dfsdf',
+    },
+  ];
 
   return (
     <div className={classes.root}>
@@ -198,6 +208,7 @@ function AdminPanel(): ReactElement {
       <SwipeableDrawer open={state.left} onClose={toggleDrawer(false)} onOpen={toggleDrawer(true)}>
         {sideList()}
       </SwipeableDrawer>
+      <Table />
     </div>
   );
 }
