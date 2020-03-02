@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AdminPanel from '../../components/AdminPanel/AdminPanel';
 import FormAuth from '../../components/FormAuth/FormAuth';
 import './style.css';
-import { getDataToLocalStorage, checkToken } from '../../helpers';
+import { getDataToLocalStorage } from '../../helpers';
 
 function Admin() {
   const [login, setLogin] = useState<string>('');

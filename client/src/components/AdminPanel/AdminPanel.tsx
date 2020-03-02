@@ -1,41 +1,19 @@
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
-import InputBase from '@material-ui/core/InputBase';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import CategoryIcon from '@material-ui/icons/Category';
-import DescriptionIcon from '@material-ui/icons/Description';
-import FiberNewIcon from '@material-ui/icons/FiberNew';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import { deleteDataToLocalStorage } from '../../helpers';
-import Table from './Table/Table';
-
-// const useStyles = makeStyles({
-//   list: {
-//     width: 250,
-//   },
-//   fullList: {
-//     width: 'auto',
-//   },
-// });
+import PanelContent from './PanelContent/PanelContent';
+import SideList from './SideList/SideList';
+import { getCategories, getQuotes } from '../../helpers/services';
 
 const useStyles = makeStyles(theme => ({
-  list: {
-    width: 250,
-  },
-  fullList: {
-    width: 'auto',
-  },
   root: {
     flexGrow: 1,
     width: '100%',
@@ -53,50 +31,16 @@ const useStyles = makeStyles(theme => ({
       display: 'block',
     },
   },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(1),
-      width: 'auto',
-    },
-  },
-  searchIcon: {
-    width: theme.spacing(7),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  inputRoot: {
-    color: 'inherit',
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 7),
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: 120,
-      '&:focus': {
-        width: 200,
-      },
-    },
-  },
 }));
 
 function AdminPanel(): ReactElement {
   const classes = useStyles();
-  const [state, setState] = React.useState({
+
+  const [state, setState] = useState({
     left: false,
   });
+  const [contentData, setContentData] = useState<string>('');
+  const [categoryData, setCategoryData] = useState<any>([]);
 
   const toggleDrawer = (open: boolean) => (event: any) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -105,57 +49,34 @@ function AdminPanel(): ReactElement {
     setState({ left: open });
   };
 
-  const sideList = () => (
-    <div
-      className={classes.list}
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-    >
-      <List>
-        {['Категории', 'Статьи', 'Предложенные цитаты'].map(text => {
-          switch (text) {
-            case 'Категории':
-              return (
-                <ListItem button key={text}>
-                  <ListItemIcon>
-                    <CategoryIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItem>
-              );
-            case 'Статьи':
-              return (
-                <ListItem button key={text}>
-                  <ListItemIcon>
-                    <DescriptionIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItem>
-              );
-            default:
-              return (
-                <ListItem button key={text}>
-                  <ListItemIcon>
-                    <FiberNewIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItem>
-              );
-          }
-        })}
-      </List>
-    </div>
-  );
+  const changeContentData = (value: string) => {
+    switch (value) {
+      case 'Категории':
+        getCategories()
+          .then((res: any) => {
+            setCategoryData(res.data);
+          })
+          .catch((err: any) => console.log(err));
+        break;
+      case 'Статьи':
+        getQuotes()
+          .then((res: any) => {
+            setCategoryData(res.data);
+          })
+          .catch((err: any) => console.log(err));
+        break;
+    }
+    setContentData(value);
+  };
 
-  const data = [
-    { id: '123', author: 'Baran', text: 'sdfsdgdgsdfsdfsdf' },
-    {
-      id: '546',
-      author: 'Jora',
-      text: 'dfsdf',
-    },
-  ];
+  // const data = [
+  //   { id: '123', author: 'Baran', text: 'sdfsdgdgsdfsdfsdf' },
+  //   {
+  //     id: '546',
+  //     author: 'Jora',
+  //     text: 'dfsdf',
+  //   },
+  // ];
 
   return (
     <div className={classes.root}>
@@ -173,19 +94,6 @@ function AdminPanel(): ReactElement {
           <Typography className={classes.title} variant="h6" noWrap>
             Админка
           </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
           <IconButton
             aria-label="account of current user"
             aria-controls="menu-appbar"
@@ -206,9 +114,9 @@ function AdminPanel(): ReactElement {
         </Toolbar>
       </AppBar>
       <SwipeableDrawer open={state.left} onClose={toggleDrawer(false)} onOpen={toggleDrawer(true)}>
-        {sideList()}
+        <SideList toggleDrawer={toggleDrawer} changeContentData={changeContentData} />
       </SwipeableDrawer>
-      <Table />
+      <PanelContent contentData={contentData} categoryData={categoryData} />
     </div>
   );
 }
