@@ -69,7 +69,6 @@ export default function FormAuth(props: IFormAuth) {
           label="Email Address"
           name="email"
           autoComplete="email"
-          autoFocus
           onChange={e => props.setLogin(e.target.value)}
         />
         <TextField

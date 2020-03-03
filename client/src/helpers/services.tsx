@@ -1,30 +1,42 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { BASE_URL } from '../constants';
 import { getDataToLocalStorage } from './index';
 
-export function getQuotes(
-  start?: number,
-  limit?: number,
-  category?: string
-): Promise<AxiosResponse> {
-  return axios.get(`${BASE_URL}/quotes`, { params: { offset: start, limit, category } });
+function commonRequest(path: any, method: any, data?: any, params?: any) {
+  return axios({
+    baseURL: `${BASE_URL}/${path}`,
+    method,
+    data,
+    params,
+    headers: {
+      authorization: getDataToLocalStorage('tokenSportsQuotes'),
+    },
+  });
 }
 
-// export function getQuotesForId(id: number): Promise<AxiosResponse> {
+export function getQuotes(start?: number, limit?: number, category?: string) {
+  return commonRequest('quotes', 'GET', { params: { offset: start, limit, category } });
+}
+
+// export function getQuoteId(id: number): Promise<AxiosResponse> {
 //   return axios.get(`${BASE_URL}/quotes/{${id}}`);
 // }
 
-export function getCategories(): Promise<AxiosResponse> {
-  return axios.get(`${BASE_URL}/categories`);
-}
-export function createCategory(name: any): Promise<AxiosResponse> {
-  return axios.post(
-    `${BASE_URL}/create-category`,
-    { name },
-    { headers: { authorization: `Bearer ${getDataToLocalStorage('tokenSportsQuotes')}` } }
-  );
+export function getCategories() {
+  return commonRequest('categories', 'GET');
 }
 
-export function authAdmin(email: string, password: string): Promise<AxiosResponse> {
-  return axios.post(`${BASE_URL}/auth/login`, { email, password });
+export function createCategory(name: any) {
+  return commonRequest('create-category', 'POST', { name });
+}
+
+export function deleteCategory(categoryId: any) {
+  return commonRequest(`categories/${categoryId}`, 'DELETE');
+}
+export function updateCategory(categoryId: any, name: any) {
+  return commonRequest(`categories/${categoryId}`, 'PUT', { name });
+}
+
+export function authAdmin(email: string, password: string) {
+  return commonRequest('auth/login', 'POST', { email, password });
 }

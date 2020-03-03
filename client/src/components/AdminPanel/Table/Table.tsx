@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import MaterialTable, { Column } from 'material-table';
 import './Table.css';
-import { createCategory } from '../../../helpers/services';
+import { createCategory, deleteCategory, updateCategory } from '../../../helpers/services';
 
 interface Row {
   id: string;
@@ -20,12 +20,7 @@ interface ITable {
 }
 
 export default function Table(props: any) {
-  const columns = [
-    { title: 'name', field: 'name' },
-    { title: '_id', field: '_id' },
-  ];
-
-  console.log(props.data, 'categoryData');
+  const columns = [{ title: 'name', field: 'name' }];
 
   return (
     <div className="table">
@@ -35,35 +30,40 @@ export default function Table(props: any) {
         data={props.data}
         editable={{
           onRowAdd: newData =>
-            new Promise(resolve => {
-              resolve();
-              console.log(newData.name, 'newData.name');
-              createCategory(newData.name);
-            }),
-          // onRowUpdate: (newData, oldData) =>
-          //   new Promise(resolve => {
-          //     setTimeout(() => {
-          //       resolve();
-          //       if (oldData) {
-          //         setState(prevState => {
-          //           const data = [...prevState.data];
-          //           data[data.indexOf(oldData)] = newData;
-          //           return { ...prevState, data };
-          //         });
-          //       }
-          //     }, 600);
-          //   }),
-          // onRowDelete: oldData =>
-          //   new Promise(resolve => {
-          //     setTimeout(() => {
-          //       resolve();
-          //       setState(prevState => {
-          //         const data = [...prevState.data];
-          //         data.splice(data.indexOf(oldData), 1);
-          //         return { ...prevState, data };
-          //       });
-          //     }, 600);
-          //   }),
+            createCategory(newData.name)
+              .then(res => {
+                props.setData((prevState: any) => prevState.concat(res.data));
+              })
+              .catch(err => console.log(err)),
+
+          onRowUpdate: (newData, oldData) => {
+            if (oldData) {
+              return updateCategory(newData._id, newData.name)
+                .then(() =>
+                  props.setData((prevState: any) => {
+                    return prevState.map((item: any) => {
+                      return item._id === newData._id ? newData : item;
+                    });
+                  })
+                )
+                .catch(err => console.log(err));
+            } else {
+              return new Promise(resolve => {
+                setTimeout(() => {
+                  resolve();
+                }, 0);
+              });
+            }
+          },
+
+          onRowDelete: oldData =>
+            deleteCategory(oldData._id)
+              .then(() =>
+                props.setData((prevState: any) => {
+                  return prevState.filter((item: any) => item._id !== oldData._id);
+                })
+              )
+              .catch(err => console.log(err)),
         }}
       />
     </div>

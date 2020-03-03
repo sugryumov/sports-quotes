@@ -36,17 +36,15 @@ const useStyles = makeStyles(theme => ({
 function AdminPanel(): ReactElement {
   const classes = useStyles();
 
-  const [state, setState] = useState({
-    left: false,
-  });
-  const [contentData, setContentData] = useState<string>('');
-  const [categoryData, setCategoryData] = useState<any>([]);
+  const [state, setState] = useState<boolean>(false);
+  const [contentLabel, setContentLabel] = useState<string>('');
+  const [contentData, setContentData] = useState<any>([]);
 
   const toggleDrawer = (open: boolean) => (event: any) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-    setState({ left: open });
+    setState(open);
   };
 
   const changeContentData = (value: string) => {
@@ -54,29 +52,20 @@ function AdminPanel(): ReactElement {
       case 'Категории':
         getCategories()
           .then((res: any) => {
-            setCategoryData(res.data);
+            setContentData(res.data);
           })
           .catch((err: any) => console.log(err));
         break;
       case 'Статьи':
         getQuotes()
           .then((res: any) => {
-            setCategoryData(res.data);
+            setContentData(res.data);
           })
           .catch((err: any) => console.log(err));
         break;
     }
-    setContentData(value);
+    setContentLabel(value);
   };
-
-  // const data = [
-  //   { id: '123', author: 'Baran', text: 'sdfsdgdgsdfsdfsdf' },
-  //   {
-  //     id: '546',
-  //     author: 'Jora',
-  //     text: 'dfsdf',
-  //   },
-  // ];
 
   return (
     <div className={classes.root}>
@@ -113,10 +102,14 @@ function AdminPanel(): ReactElement {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <SwipeableDrawer open={state.left} onClose={toggleDrawer(false)} onOpen={toggleDrawer(true)}>
+      <SwipeableDrawer open={state} onClose={toggleDrawer(false)} onOpen={toggleDrawer(true)}>
         <SideList toggleDrawer={toggleDrawer} changeContentData={changeContentData} />
       </SwipeableDrawer>
-      <PanelContent contentData={contentData} categoryData={categoryData} />
+      <PanelContent
+        contentLabel={contentLabel}
+        contentData={contentData}
+        setContentData={setContentData}
+      />
     </div>
   );
 }
