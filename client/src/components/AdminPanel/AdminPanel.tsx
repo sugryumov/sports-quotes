@@ -59,7 +59,7 @@ function AdminPanel(): ReactElement {
       case 'Статьи':
         getQuotes()
           .then((res: any) => {
-            setContentData(res.data);
+            setContentData(res.data.quotes);
           })
           .catch((err: any) => console.log(err));
         break;
