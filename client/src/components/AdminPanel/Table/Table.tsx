@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MaterialTable, { Column } from 'material-table';
 import './Table.css';
 import {
@@ -8,6 +8,7 @@ import {
   createQuote,
   deleteQuote,
   updateQuote,
+  getCategories,
 } from '../../../helpers/services';
 
 interface Row {
@@ -27,17 +28,31 @@ interface ITable {
 }
 
 export default function Table(props: any) {
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    if (props.label === 'Статьи') {
+      getCategories()
+        .then((res: any) => {
+          setCategories(res.data);
+        })
+        .catch((err: any) => console.log(err));
+    }
+  }, []);
   const chooseColumns = (label: any) => {
     switch (label) {
       case 'Категории': {
         return [{ title: 'name', field: 'name' }];
       }
       case 'Статьи': {
+        const dynamicSelect = categories.reduce(function(acc: any, current: any, iter: any) {
+          acc[current.name] = current.name;
+          return acc;
+        }, {});
         return [
           {
             title: 'Категория',
             field: 'category',
-            // lookup: { Лыжи: 'Лыжи', Футбол: 'Футбол' },
+            lookup: dynamicSelect,
           },
           { title: 'Автор', field: 'author' },
           { title: 'Цитата', field: 'quote' },
@@ -129,7 +144,7 @@ export default function Table(props: any) {
   return (
     <div className="table">
       <MaterialTable
-        title="Таблица"
+        title={props.label}
         columns={chooseColumns(props.label)}
         data={props.data}
         editable={chooseEditable(props.label)}
