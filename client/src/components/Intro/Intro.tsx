@@ -1,19 +1,30 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import './Intro.css';
+import Button from '../../components/Button/Button';
+// import { getQuotesForId } from '../../helpers/services';
 
 function Intro(): ReactElement {
+  const [quote, setQuote] = useState({
+    author: 'Серега Татанов',
+    quote:
+      '- Как то раз покурил перед стартом, и сразу всех обогнал.С тех пор не изменяю этой традиции',
+  });
+
+  // useEffect(() => {
+  //   getQuotesForId(randomNumber)
+  //     .then(res => {
+  //       console.log(res, 'res');
+  //       setQuote(res.data.quote);
+  //     })
+  //     .catch(err => console.log(err));
+  // }, []);
+
   return (
-    <div className="intro">
-      <div className="container">
-        <h1 className="intro__title">Цитаты спортсменов</h1>
-        <p className="intro__text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus dolorem velit veritatis
-          delectus laborum quaerat hic, officiis nobis repellendus? Temporibus accusamus ab
-          voluptatem rem totam aliquam nihil sit ipsum sequi, facilis adipisci dolor qui quidem
-          mollitia nisi, odio perferendis enim minima ex id ratione voluptates sed. Nostrum
-          exercitationem a dolorum natus veritatis, nobis totam eum expedita modi commodi qui autem.
-        </p>
-      </div>
+    <div className="intro container">
+      <h1 className="intro__title">Цитаты спортсменов</h1>
+      <p className="intro__text">{quote.quote}</p>
+      <h3 className="intro__author">{quote.author}</h3>
+      <Button func={() => {}} text={'Предложить цитату'} color={'#fff'} bg={'#E05927'} />
     </div>
   );
 }

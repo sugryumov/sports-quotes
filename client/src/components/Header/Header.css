@@ -1,6 +1,9 @@
 .header {
-  padding: 27px 0 0;
+  padding: 25px 0 0;
   background-color: transparent;
+  margin-bottom: 100px;
+  position: relative;
+  z-index: 0;
 }
 
 .header__content {

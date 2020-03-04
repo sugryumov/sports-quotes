@@ -8,15 +8,15 @@
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.quote__title {
-  margin-top: 20px;
-  color: #dd5927;
-}
-
 .quote__text {
   color: #1c1c1c;
   font-size: 16px;
   line-height: 1.6;
+}
+
+.quote__author {
+  margin-top: 20px;
+  color: #dd5927;
 }
 
 @media (max-width: 900px) {

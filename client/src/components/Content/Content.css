@@ -1,5 +1,7 @@
 .main {
   margin-top: -40px;
+  z-index: 1;
+  position: relative;
 }
 
 .main__text {
