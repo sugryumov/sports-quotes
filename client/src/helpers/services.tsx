@@ -17,7 +17,7 @@ function commonRequest(path: any, method: any, data?: any, params?: any) {
 // Цитаты
 
 export function getQuotes(start?: number, limit?: number, category?: string) {
-  return commonRequest('quotes', 'GET', { params: { offset: start, limit, category } });
+  return commonRequest('quotes', 'GET', {}, { offset: start, limit, category });
 }
 
 export function createQuote(quote: any, author: any, category: any) {

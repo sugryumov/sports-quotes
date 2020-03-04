@@ -5,7 +5,7 @@ export const StoreContext = React.createContext<any>({});
 export default ({ children }: any) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [quotesList, setQuotesList] = useState<Array<{}>>([]);
-  const [category, setCategory] = useState('Все');
+  const [category, setCategory] = useState<string>('Все');
   const [categoriesList, setCategoriesList] = useState<Array<{}>>([]);
 
   const [startPage, setStartPage] = useState<number>(0);
@@ -17,16 +17,16 @@ export default ({ children }: any) => {
     setLoading,
     quotesList,
     setQuotesList,
-    quotesCount,
-    setQuotesCount,
+    category,
+    setCategory,
+    categoriesList,
+    setCategoriesList,
     startPage,
     setStartPage,
     limitPages,
     setLimitPages,
-    categoriesList,
-    setCategoriesList,
-    category,
-    setCategory,
+    quotesCount,
+    setQuotesCount,
   };
 
   return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>;

@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
-import Table from '../Table/Table';
+import Category from '../Category/Category';
+import Quotes from '../Quotes/Quotes';
 import './PanelContent.css';
 
 interface Props {
@@ -9,30 +10,26 @@ interface Props {
 }
 
 function PanelContent(props: Props): ReactElement {
-  const renderContent = (value: string) => {
-    switch (value) {
-      case 'Категории':
-        return (
-          <Table
-            data={props.contentData}
-            setData={props.setContentData}
-            label={props.contentLabel}
-          />
-        );
-      case 'Статьи':
-        return (
-          <Table
-            data={props.contentData}
-            setData={props.setContentData}
-            label={props.contentLabel}
-          />
-        );
-      default:
-        return <div className="chart" />;
-    }
-  };
-
-  return renderContent(props.contentLabel);
+  switch (props.contentLabel) {
+    case 'Категории':
+      return (
+        <Category
+          data={props.contentData}
+          setData={props.setContentData}
+          label={props.contentLabel}
+        />
+      );
+    case 'Статьи':
+      return (
+        <Quotes
+          data={props.contentData}
+          setData={props.setContentData}
+          label={props.contentLabel}
+        />
+      );
+    default:
+      return <div className="chart" />;
+  }
 }
 
 export default PanelContent;
