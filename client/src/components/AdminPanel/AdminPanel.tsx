@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
 function AdminPanel(): ReactElement {
   const classes = useStyles();
 
-  const [state, setState] = useState<boolean>(false);
+  const [statusMenu, setStatusMenu] = useState<boolean>(false);
   const [contentLabel, setContentLabel] = useState<string>('');
   const [contentData, setContentData] = useState<any>([]);
 
@@ -44,7 +44,7 @@ function AdminPanel(): ReactElement {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-    setState(open);
+    setStatusMenu(open);
   };
 
   const changeContentData = (value: string) => {
@@ -102,7 +102,7 @@ function AdminPanel(): ReactElement {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <SwipeableDrawer open={state} onClose={toggleDrawer(false)} onOpen={toggleDrawer(true)}>
+      <SwipeableDrawer open={statusMenu} onClose={toggleDrawer(false)} onOpen={toggleDrawer(true)}>
         <SideList toggleDrawer={toggleDrawer} changeContentData={changeContentData} />
       </SwipeableDrawer>
       <PanelContent

@@ -29,6 +29,7 @@ interface ITable {
 
 export default function Table(props: any) {
   const [categories, setCategories] = useState([]);
+
   useEffect(() => {
     if (props.label === 'Статьи') {
       getCategories()
@@ -37,7 +38,8 @@ export default function Table(props: any) {
         })
         .catch((err: any) => console.log(err));
     }
-  }, []);
+  }, [props.label]);
+
   const chooseColumns = (label: any) => {
     switch (label) {
       case 'Категории': {

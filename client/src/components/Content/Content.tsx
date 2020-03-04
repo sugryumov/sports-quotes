@@ -11,15 +11,14 @@ import './Content.css';
 function Content() {
   const context = useContext(StoreContext);
 
-  useEffect(() => {
-    Promise.all([getQuotes(context.startPage, context.limitPages), getCategories()])
-      .then(res => {
-        context.setCategoriesList(res[1].data);
-        context.setQuotesList(res[0].data.quotes);
-        context.setQuotesCount(Math.ceil(res[0].data.count / context.limitPages));
-      })
-      .catch(err => console.log(err));
-  }, []);
+  Promise.all([getQuotes(context.startPage, context.limitPages), getCategories()])
+    .then(res => {
+      console.log(res[0].data.quotes, 'res[0].data.quotes');
+      context.setQuotesList(res[0].data.quotes);
+      context.setCategoriesList(res[1].data);
+      context.setQuotesCount(Math.ceil(res[0].data.count / context.limitPages));
+    })
+    .catch(err => console.log(err));
 
   const updatePages = (start: number) => {
     const newStateCategory = context.category === 'Все' ? null : context.category;
