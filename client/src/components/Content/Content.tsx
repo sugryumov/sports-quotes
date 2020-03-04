@@ -19,7 +19,7 @@ function Content() {
         context.setQuotesCount(Math.ceil(res[0].data.count / context.limitPages));
       })
       .catch(err => console.log(err));
-  }, [context]);
+  }, []);
 
   const updatePages = (start: number) => {
     const newStateCategory = context.category === 'Все' ? null : context.category;
