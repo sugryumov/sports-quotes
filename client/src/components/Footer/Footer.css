@@ -11,17 +11,32 @@
 .footer__content {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
+.footer__logo {
+  display: flex;
+  justify-content: flex-start;
+}
+.logo {
+  width: 10px;
+}
 .footer__subscribe {
   color: #1c1c1c;
   text-align: center;
 }
 
 .footer__support {
+  display: flex;
+  justify-content: flex-end;
   color: #1c1c1c;
   text-align: right;
+}
+
+.icon-wrap {
+  cursor: pointer;
+  text-align: center;
+  width: 20%;
 }
 
 @media (max-width: 900px) {

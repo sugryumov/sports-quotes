@@ -18,6 +18,7 @@ export default function TopLayout(props) {
           rel="stylesheet"
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
+        <script src="https://widget.cloudpayments.ru/bundles/cloudpayments"></script>
       </Helmet>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
