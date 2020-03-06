@@ -3,7 +3,7 @@
   position: relative;
 }
 .app-wrapper {
-  /* background-image: url(../../images/bg.jpeg); */
+  background-image: url(../../images/bg.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top;
