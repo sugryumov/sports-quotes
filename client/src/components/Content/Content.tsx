@@ -36,8 +36,10 @@ function Content() {
 
   const styleScroll = {
     position: 'fixed',
-    bottom: 50,
-    right: 50,
+    bottom: '10%',
+    right: '10%',
+    border: '4px solid #DD5927',
+    borderRadius: '50%',
     cursor: 'pointer',
     transitionDuration: '0.2s',
     transitionTimingFunction: 'linear',
@@ -56,7 +58,7 @@ function Content() {
             limitPages={context.limitPages}
           />
           <ScrollToTop showUnder={160} style={styleScroll}>
-            <ArrowUpwardRoundedIcon fontSize="large" htmlColor="#DD5927" />
+            <ArrowUpwardRoundedIcon htmlColor="#DD5927" style={{ width: '3rem', height: '3rem' }} />
           </ScrollToTop>
         </ErrorBoundary>
       </div>
