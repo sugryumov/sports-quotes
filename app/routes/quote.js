@@ -52,6 +52,14 @@ const quoteRoutes = [
     handler: controller.getQuote
   },
   {
+    method: 'GET',
+    path: '/api/random-quote',
+    options: {
+      tags: ['api', 'quote'],
+    },
+    handler: controller.randomQuote
+  },
+  {
     method: 'DELETE',
     path: '/api/quotes/{quoteId}',
     options: {
