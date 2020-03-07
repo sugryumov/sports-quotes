@@ -78,6 +78,18 @@ const getQuote = async (request, h) => {
   }
 };
 
+const randomQuote = async (request, h) => {
+  try {
+    const countQuotes = await Quote.count();
+    const random = Math.floor(Math.random() * countQuotes);
+    const result = await Quote.findOne().skip(random);
+
+    return h.response(result);
+  } catch (err) {
+    return h.response(err).code(500);
+  }
+};
+
 const removeQuote = async (request, h) => {
   try {
     const deleteQuote = await Quote.findByIdAndDelete(request.params.quoteId);
@@ -118,6 +130,7 @@ module.exports = {
   createQuote,
   getAllQuotes,
   getQuote,
+  randomQuote,
   removeQuote,
   putQuote
 };
