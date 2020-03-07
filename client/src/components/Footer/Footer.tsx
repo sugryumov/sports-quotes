@@ -12,8 +12,8 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer__content container">
-        <div className="footer__logo footer__item">
-          <a href="tg://our_sports_quotes">
+        <div className="footer__links footer__item">
+          <a href="tg://our_sports_quotes" className="footer__link">
             <TelegramIcon color="action" fontSize="large" />
           </a>
         </div>

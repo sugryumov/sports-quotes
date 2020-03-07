@@ -17,8 +17,10 @@
   height: 50px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 600px) {
   .header__content {
+    padding: 0;
     justify-content: center;
+    margin: 0 auto;
   }
 }
