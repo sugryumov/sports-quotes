@@ -1,9 +1,8 @@
-import React from 'react';
-import { Link, navigate } from 'gatsby';
-import { svgHolder } from '../../helpers/svgHolders';
-import './Footer.css';
 import PaymentIcon from '@material-ui/icons/Payment';
 import TelegramIcon from '@material-ui/icons/Telegram';
+import { navigate } from 'gatsby';
+import React from 'react';
+import './Footer.css';
 
 function Footer() {
   const transferInMaintain = () => {
@@ -12,8 +11,8 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer__content container">
-        <div className="footer__links footer__item">
-          <a href="tg://our_sports_quotes" className="footer__link">
+        <div className="footer__logo footer__item">
+          <a href="tg://our_sports_quotes">
             <TelegramIcon color="action" fontSize="large" />
           </a>
         </div>
@@ -22,7 +21,7 @@ function Footer() {
         </div>
         <div className="footer__support footer__item">
           <p>Поддержать проект</p>
-          <div className="icon-wrap" onClick={() => transferInMaintain()}>
+          <div className="icon-wrap" onClick={transferInMaintain}>
             <PaymentIcon fontSize="large" color="action" />
           </div>
         </div>

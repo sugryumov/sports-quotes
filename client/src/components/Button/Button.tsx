@@ -7,22 +7,37 @@ import './Button.css';
 interface Props {
   func(): void;
   text: string;
-  color: string;
-  bg: string;
+  type: string;
   isDisabled?: boolean;
 }
 
 function Button(props: Props): ReactElement {
-  const rootStyles = {
+  const defaultStyle = {
     width: 'auto',
-    color: props.color,
-    backgroundColor: props.bg,
+    color: '#E05927',
+    backgroundColor: '#fff',
+    transition: 'all 0.35s ease',
+    '&:hover': {
+      color: '#fff',
+      backgroundColor: '#E05927',
+    },
+  };
+  const secondaryStyle = {
+    width: 'auto',
+    color: '#fff',
+    backgroundColor: '#E05927',
+    '&:hover': {
+      backgroundColor: '#b75531',
+    },
+    '&:active': {
+      backgroundColor: '#b75531',
+    },
   };
 
   const theme = createMuiTheme({
     overrides: {
       MuiButton: {
-        root: rootStyles,
+        root: props.type === 'primary' ? defaultStyle : secondaryStyle,
       },
     },
   });

@@ -32,9 +32,9 @@ export function updateQuote(quoteId: any, quote: any, author: any, category: any
   return commonRequest(`quotes/${quoteId}`, 'PUT', { quote, author, category });
 }
 
-// export function getQuoteId(id: number): Promise<AxiosResponse> {
-//   return axios.get(`${BASE_URL}/quotes/{${id}}`);
-// }
+export function getRandomQuote() {
+  return commonRequest('random-quote', 'GET');
+}
 
 // Категории
 

@@ -49,7 +49,7 @@ function Filter(props: IFilterProps): ReactElement {
         title="Показывать по"
         data={selectListLimit}
       />
-      <Button func={getQuotesForNewFilters} text={'Применить'} color={'#E05927'} bg={'#fff'} />
+      <Button func={getQuotesForNewFilters} text={'Применить'} type={'primary'} />
     </div>
   );
 }
