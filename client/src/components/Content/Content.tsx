@@ -44,6 +44,11 @@ function Content() {
     transitionDuration: '0.2s',
     transitionTimingFunction: 'linear',
     transitionDelay: '0s',
+    width: '60px',
+    height: '60px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   };
 
   return (
@@ -58,7 +63,7 @@ function Content() {
             limitPages={context.limitPages}
           />
           <ScrollToTop showUnder={160} style={styleScroll}>
-            <ArrowUpwardRoundedIcon htmlColor="#DD5927" style={{ width: '3rem', height: '3rem' }} />
+            <ArrowUpwardRoundedIcon htmlColor="#DD5927" style={{ width: '45px', height: '45px' }} />
           </ScrollToTop>
         </ErrorBoundary>
       </div>
