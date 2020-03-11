@@ -32,6 +32,9 @@ function Button(props: Props): ReactElement {
     '&:active': {
       backgroundColor: '#b75531',
     },
+    '&:focus': {
+      backgroundColor: '#b75531',
+    },
   };
 
   const theme = createMuiTheme({
@@ -45,7 +48,7 @@ function Button(props: Props): ReactElement {
   return (
     <div className="button">
       <ThemeProvider theme={theme}>
-        <ButtonMaterial onClick={() => props.func()} disabled={props.isDisabled}>
+        <ButtonMaterial onClick={props.func} disabled={props.isDisabled}>
           {props.text}
         </ButtonMaterial>
       </ThemeProvider>

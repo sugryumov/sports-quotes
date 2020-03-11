@@ -4,6 +4,7 @@ import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import Intro from '../../components/Intro/Intro';
 import './App.css';
+import ModalWindow from '../ModalWindow/ModalWindow';
 
 function App(): ReactElement {
   return (
@@ -14,6 +15,7 @@ function App(): ReactElement {
       </div>
       <Content />
       <Footer />
+      <ModalWindow />
     </div>
   );
 }

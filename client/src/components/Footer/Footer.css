@@ -44,11 +44,14 @@
     padding: 10px 0;
   }
   .footer__content {
+    padding: 0;
     width: 100%;
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-self: center;
   }
   .footer__item {
     width: 100%;
+    text-align: center;
   }
   .footer__link {
     margin: 0 auto;

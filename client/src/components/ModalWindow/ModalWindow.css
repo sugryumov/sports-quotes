@@ -1,0 +1,11 @@
+.modal__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+textarea {
+  width: 100%;
+}
+.Component-closeButton-766 {
+  right: 0;
+}

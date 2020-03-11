@@ -35,8 +35,7 @@
 
 @media (max-width: 600px) {
   .intro {
-    height: 500px;
-    padding-top: 130px;
+    padding-top: 30px;
   }
 
   .intro__text {
@@ -44,6 +43,6 @@
   }
 
   .intro__title {
-    font-size: 18px;
+    font-size: 28px;
   }
 }
