@@ -10,6 +10,7 @@ const db = require('./config/db');
 const authRoutes = require('./app/routes/auth');
 const quoteRoutes = require('./app/routes/quote');
 const categoryRoutes = require('./app/routes/category');
+const offerQuoteRoutes = require('./app/routes/offerQuote');
 const viewsRoutes = require('./app/routes/views');
 const userToken = require('./helpers/userToken');
 
@@ -44,7 +45,12 @@ const init = async () => {
     validate: userToken
   });
 
-  await server.route([...quoteRoutes, ...categoryRoutes, ...authRoutes]);
+  await server.route([
+    ...quoteRoutes,
+    ...categoryRoutes,
+    ...authRoutes,
+    ...offerQuoteRoutes
+  ]);
 
   if (process.env.NODE_ENV === 'production') {
     server.route([...viewsRoutes]);
