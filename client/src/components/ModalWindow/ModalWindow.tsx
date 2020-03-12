@@ -19,6 +19,7 @@ import React, { ReactElement, useContext, useState } from 'react';
 import Button from '../../components/Button/Button';
 import { StoreContext } from '../../context';
 import './ModalWindow.css';
+import { offerQuote } from '../../helpers/services';
 
 interface IPropsModal {}
 
@@ -72,9 +73,10 @@ const DialogActions = withStyles((theme: Theme) => ({
 function ModalWindow(props: IPropsModal): ReactElement {
   const context = useContext(StoreContext);
 
-  const [authorNameValue, setAuthorNameValue] = useState<String>('');
   const [categoryNameValue, setCategoryNameValue] = useState<String>('');
+  const [authorNameValue, setAuthorNameValue] = useState<String>('');
   const [textValue, setTextValue] = useState<String>('');
+  const [statusDispatch, setStatusDispatch] = useState<Boolean>(false);
 
   const matches = useMediaQuery('(max-width:600px)');
 
@@ -83,6 +85,23 @@ function ModalWindow(props: IPropsModal): ReactElement {
     setAuthorNameValue('');
     setTextValue('');
     context.setOpenModal(false);
+  };
+
+  const createYourQuote = () => {
+    offerQuote(categoryNameValue, authorNameValue, textValue)
+      .then(() => {
+        setStatusDispatch(true);
+        setCategoryNameValue('');
+        setAuthorNameValue('');
+        setTextValue('');
+        setTimeout(() => {
+          context.setOpenModal(false);
+        }, 1500);
+        setTimeout(() => {
+          setStatusDispatch(false);
+        }, 2000);
+      })
+      .catch((err: any) => console.log(err));
   };
 
   const theme = createMuiTheme({
@@ -135,33 +154,39 @@ function ModalWindow(props: IPropsModal): ReactElement {
           aria-labelledby="customized-dialog-title"
           open={context.openModal}
         >
-          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-            Ваша цитата
-          </DialogTitle>
-          <DialogContent dividers>
-            <form noValidate autoComplete="off" className="modal__form">
-              <TextField
-                label="Категория"
-                value={categoryNameValue}
-                onChange={e => setCategoryNameValue(e.target.value)}
-              />
-              <TextField
-                label="Автор"
-                value={authorNameValue}
-                onChange={e => setAuthorNameValue(e.target.value)}
-              />
-              <TextField
-                label="Текст цитаты"
-                rows={2}
-                rowsMax={4}
-                value={textValue}
-                onChange={e => setTextValue(e.target.value)}
-              />
-            </form>
-          </DialogContent>
-          <DialogActions disableSpacing={false}>
-            <Button func={handleClose} text={'Отправить'} type={'secondary'} />
-          </DialogActions>
+          {statusDispatch ? (
+            <div>Отправлено</div>
+          ) : (
+            <>
+              <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                Ваша цитата
+              </DialogTitle>
+              <DialogContent dividers>
+                <form noValidate autoComplete="off" className="modal__form">
+                  <TextField
+                    label="Категория"
+                    value={categoryNameValue}
+                    onChange={e => setCategoryNameValue(e.target.value)}
+                  />
+                  <TextField
+                    label="Автор"
+                    value={authorNameValue}
+                    onChange={e => setAuthorNameValue(e.target.value)}
+                  />
+                  <TextField
+                    label="Текст цитаты"
+                    rows={2}
+                    rowsMax={4}
+                    value={textValue}
+                    onChange={e => setTextValue(e.target.value)}
+                  />
+                </form>
+              </DialogContent>
+              <DialogActions>
+                <Button func={createYourQuote} text={'Отправить'} type={'secondary'} />
+              </DialogActions>
+            </>
+          )}
         </Dialog>
       </ThemeProvider>
     </div>
