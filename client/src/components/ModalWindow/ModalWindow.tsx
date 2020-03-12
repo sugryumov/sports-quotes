@@ -130,7 +130,8 @@ function ModalWindow(props: IPropsModal): ReactElement {
       },
       MuiPaper: {
         root: {
-          width: matches ? '100%' : '500px',
+          width: matches ? '100%' : statusDispatch ? '200px' : '500px',
+          height: statusDispatch ? '100px' : 'auto',
         },
       },
       MuiIconButton: {
@@ -155,7 +156,7 @@ function ModalWindow(props: IPropsModal): ReactElement {
           open={context.openModal}
         >
           {statusDispatch ? (
-            <div>Отправлено</div>
+            <div className="modal__sended">Отправлено</div>
           ) : (
             <>
               <DialogTitle id="customized-dialog-title" onClose={handleClose}>
