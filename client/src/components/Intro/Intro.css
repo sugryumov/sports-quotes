@@ -6,13 +6,16 @@
   margin-bottom: 100px;
 }
 
+.intro__quote-wrapper {
+  width: 60%;
+}
+
 .intro__title {
   color: #fff;
   font-size: 36px;
   text-transform: uppercase;
 }
 .intro__text {
-  width: 60%;
   color: #fff;
   font-size: 18px;
   margin-top: 50px;

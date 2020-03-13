@@ -36,7 +36,7 @@ export function getRandomQuote() {
   return commonRequest('random-quote', 'GET');
 }
 
-export function offerQuote(quote: any, author: any, category: any) {
+export function offerQuote(category: any, author: any, quote: any) {
   return commonRequest('offer', 'POST', { quote, author, category });
 }
 
