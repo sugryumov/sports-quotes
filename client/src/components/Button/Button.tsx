@@ -35,6 +35,10 @@ function Button(props: Props): ReactElement {
     '&:focus': {
       backgroundColor: '#b75531',
     },
+    '&:disabled': {
+      backgroundColor: '#D6D6D7',
+      color: 'fff',
+    },
   };
 
   const theme = createMuiTheme({

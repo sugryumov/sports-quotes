@@ -10,7 +10,7 @@ import {
   withStyles,
   WithStyles,
 } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import InputField from '../InputField/InputField';
 import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import CloseIcon from '@material-ui/icons/Close';
@@ -77,8 +77,21 @@ function ModalWindow(props: IPropsModal): ReactElement {
   const [authorNameValue, setAuthorNameValue] = useState<String>('');
   const [textValue, setTextValue] = useState<String>('');
   const [statusDispatch, setStatusDispatch] = useState<Boolean>(false);
+  const [errorList, setErrorList] = useState<Array<String>>(['Категория', 'Автор', 'Текст цитаты']);
 
   const matches = useMediaQuery('(max-width:600px)');
+
+  const updateErrorList = (valid: boolean, fieldName: string) => {
+    if (valid) {
+      if (errorList.indexOf(fieldName) > -1) {
+        setErrorList(errorList.filter((item: any) => item !== fieldName));
+      }
+    } else {
+      if (errorList.indexOf(fieldName) === -1) {
+        setErrorList((prevState: any) => prevState.concat(fieldName));
+      }
+    }
+  };
 
   const handleClose = () => {
     setCategoryNameValue('');
@@ -96,6 +109,7 @@ function ModalWindow(props: IPropsModal): ReactElement {
         setTextValue('');
         setTimeout(() => {
           context.setOpenModal(false);
+          setStatusDispatch(false);
         }, 1500);
         setTimeout(() => {
           setStatusDispatch(false);
@@ -106,28 +120,6 @@ function ModalWindow(props: IPropsModal): ReactElement {
 
   const theme = createMuiTheme({
     overrides: {
-      MuiInput: {
-        underline: {
-          '&::before': {
-            borderBottom: '1px solid #777',
-          },
-          '&::after': {
-            borderBottom: '2px solid #e05927',
-          },
-        },
-      },
-      MuiFormControl: {
-        root: {
-          marginBottom: '20px',
-        },
-      },
-      MuiInputLabel: {
-        root: {
-          '&$focused': {
-            color: '#877f7f',
-          },
-        },
-      },
       MuiPaper: {
         root: {
           width: matches ? '100%' : statusDispatch ? '200px' : '500px',
@@ -146,49 +138,73 @@ function ModalWindow(props: IPropsModal): ReactElement {
       },
     },
   });
+  console.log(errorList, 'errorList');
 
   return (
     <div className="modal">
       <ThemeProvider theme={theme}>
-        <Dialog
-          onClose={handleClose}
-          aria-labelledby="customized-dialog-title"
-          open={context.openModal}
-        >
-          {statusDispatch ? (
+        {statusDispatch ? (
+          <Dialog
+            onClose={handleClose}
+            aria-labelledby="customized-dialog-title"
+            open={context.openModal}
+          >
             <div className="modal__sended">Отправлено</div>
-          ) : (
-            <>
-              <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                Ваша цитата
-              </DialogTitle>
-              <DialogContent dividers>
-                <form noValidate autoComplete="off" className="modal__form">
-                  <TextField
-                    label="Категория"
-                    value={categoryNameValue}
-                    onChange={e => setCategoryNameValue(e.target.value)}
-                  />
-                  <TextField
-                    label="Автор"
-                    value={authorNameValue}
-                    onChange={e => setAuthorNameValue(e.target.value)}
-                  />
-                  <TextField
-                    label="Текст цитаты"
-                    rows={2}
-                    rowsMax={4}
-                    value={textValue}
-                    onChange={e => setTextValue(e.target.value)}
-                  />
-                </form>
-              </DialogContent>
-              <DialogActions>
-                <Button func={createYourQuote} text={'Отправить'} type={'secondary'} />
-              </DialogActions>
-            </>
-          )}
-        </Dialog>
+          </Dialog>
+        ) : (
+          <Dialog
+            scroll="body"
+            onClose={handleClose}
+            aria-labelledby="customized-dialog-title"
+            open={context.openModal}
+          >
+            <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+              Ваша цитата
+            </DialogTitle>
+            <DialogContent dividers>
+              <form noValidate autoComplete="off" className="modal__form">
+                <InputField
+                  label="Категория"
+                  value={categoryNameValue}
+                  func={(e: any, valid: any, fieldName: string) => {
+                    updateErrorList(valid, fieldName);
+                    setCategoryNameValue(e.target.value);
+                  }}
+                  regExp={/^[a-zA-ZА-яЁё0-9_., -]{3,}$/g}
+                  textError="Минимум 3 буквы"
+                />
+                <InputField
+                  label="Автор"
+                  value={authorNameValue}
+                  func={(e: any, valid: any, fieldName: string) => {
+                    updateErrorList(valid, fieldName);
+                    setAuthorNameValue(e.target.value);
+                  }}
+                  regExp={/^[a-zA-ZА-яЁё0-9_., -]{3,}$/g}
+                  textError="Минимум 3 буквы"
+                />
+                <InputField
+                  label="Текст цитаты"
+                  value={textValue}
+                  func={(e: any, valid: any, fieldName: string) => {
+                    updateErrorList(valid, fieldName);
+                    setTextValue(e.target.value);
+                  }}
+                  regExp={/^[a-zA-ZА-яЁё0-9_., -]{10,}$/g}
+                  textError="Минимум 10 букв"
+                />
+              </form>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                func={createYourQuote}
+                text={'Отправить'}
+                type={'secondary'}
+                isDisabled={errorList.length > 0}
+              />
+            </DialogActions>
+          </Dialog>
+        )}
       </ThemeProvider>
     </div>
   );
