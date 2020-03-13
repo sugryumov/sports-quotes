@@ -3,14 +3,15 @@ import React, { useState } from 'react';
 export const StoreContext = React.createContext<any>({});
 
 export default ({ children }: any) => {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<Boolean>(false);
   const [quotesList, setQuotesList] = useState<Array<{}>>([]);
-  const [category, setCategory] = useState<string>('Все');
+  const [category, setCategory] = useState<String>('Все');
   const [categoriesList, setCategoriesList] = useState<Array<{}>>([]);
+  const [openModal, setOpenModal] = useState<Boolean>(false);
 
-  const [startPage, setStartPage] = useState<number>(0);
-  const [limitPages, setLimitPages] = useState<number>(2);
-  const [quotesCount, setQuotesCount] = useState<number>(0);
+  const [startPage, setStartPage] = useState<Number>(0);
+  const [limitPages, setLimitPages] = useState<Number>(2);
+  const [quotesCount, setQuotesCount] = useState<Number>(0);
 
   const store = {
     loading,
@@ -27,6 +28,8 @@ export default ({ children }: any) => {
     setLimitPages,
     quotesCount,
     setQuotesCount,
+    openModal,
+    setOpenModal,
   };
 
   return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>;

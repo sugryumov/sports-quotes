@@ -1,0 +1,16 @@
+.modal__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+textarea {
+  width: 100%;
+}
+.modal__sended {
+  height: 1000%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #e05927;
+}

@@ -1,0 +1,6 @@
+.input-field {
+}
+.input-field__error {
+  min-height: 20px;
+  color: #fb7373;
+}

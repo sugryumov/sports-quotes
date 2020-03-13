@@ -6,13 +6,16 @@
   margin-bottom: 100px;
 }
 
+.intro__quote-wrapper {
+  width: 60%;
+}
+
 .intro__title {
   color: #fff;
   font-size: 36px;
   text-transform: uppercase;
 }
 .intro__text {
-  width: 60%;
   color: #fff;
   font-size: 18px;
   margin-top: 50px;
@@ -35,8 +38,7 @@
 
 @media (max-width: 600px) {
   .intro {
-    height: 500px;
-    padding-top: 130px;
+    padding-top: 30px;
   }
 
   .intro__text {
@@ -44,6 +46,6 @@
   }
 
   .intro__title {
-    font-size: 18px;
+    font-size: 28px;
   }
 }

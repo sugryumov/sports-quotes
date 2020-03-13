@@ -1,5 +1,5 @@
 import ArrowUpwardRoundedIcon from '@material-ui/icons/ArrowUpwardRounded';
-import React, { useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import ErrorBoundary from 'react-error-boundary';
 import ScrollToTop from 'react-scroll-up';
 import { StoreContext } from '../../context';
